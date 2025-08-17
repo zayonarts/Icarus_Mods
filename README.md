@@ -1,2 +1,2 @@
-# Zay's Icarus Mods
+# Zayon's Icarus Mods
 A set of Mods for the survival game called, Icarus
