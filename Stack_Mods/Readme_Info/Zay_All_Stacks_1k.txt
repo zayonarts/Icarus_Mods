@@ -1,9 +1,9 @@
 # Zay - All Stacks [1k]
 
 ## Description
-This mod modifies all stackable items in ICARUS to have a maximum stack size of 1,000 units.
+This mod modifies all stackable items in ICARUS to have a maximum stack size of 1.000 units.
 
-Instead of carrying just a few items at a time, you can now stack up to 1,000 of each item type in a single inventory slot. This significantly reduces inventory management and allows for more efficient resource gathering and storage.
+Instead of carrying just a few items at a time, you can now stack up to 1.000 of each item type in a single inventory slot. This significantly reduces inventory management and allows for more efficient resource gathering and storage.
 
 ## Compatibility
 - Version: 1.2.196
