@@ -6,7 +6,7 @@
             "version": "1.2.196",
             "compatibility": "196",
             "description": "A Simple Mod that changes the stack size of all itemables to 500.",
-            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Icons/Zay_All_Stacks_0.5k-Icon.png",
+            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_0.5k-Icon.png",
             "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_0.5k.txt",
             "files": {
                 "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Zay_All_Stacks_0.5k.EXMODZ"
@@ -18,7 +18,7 @@
             "version": "1.2.196",
             "compatibility": "196",
             "description": "A Simple Mod that changes the stack size of all itemables to 1000.",
-            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Icons/Zay_All_Stacks_1k-Icon.png",
+            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_1k-Icon.png",
             "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_1k.txt",
             "files": {
                 "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Zay_All_Stacks_1k.EXMODZ"
@@ -30,7 +30,7 @@
             "version": "1.2.196",
             "compatibility": "196",
             "description": "A Simple Mod that changes the stack size of all itemables to 2500.",
-            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Icons/Zay_All_Stacks_2.5k-Icon.png",
+            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_2.5k-Icon.png",
             "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_2.5k.txt",
             "files": {
                 "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Zay_All_Stacks_2.5k.EXMODZ"
@@ -42,7 +42,7 @@
             "version": "1.2.196",
             "compatibility": "196",
             "description": "A Simple Mod that changes the stack size of all itemables to 5000.",
-            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Icons/Zay_All_Stacks_5k-Icon.png",
+            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_5k-Icon.png",
             "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_5k.txt",
             "files": {
                 "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Zay_All_Stacks_5k.EXMODZ"
@@ -54,7 +54,7 @@
             "version": "1.2.196",
             "compatibility": "196",
             "description": "A Simple Mod that changes the stack size of all itemables to 10000.",
-            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Icons/Zay_All_Stacks_10k-Icon.png",
+            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_10k-Icon.png",
             "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_10k.txt",
             "files": {
                 "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Zay_All_Stacks_10k.EXMODZ"
@@ -66,7 +66,7 @@
             "version": "1.2.196",
             "compatibility": "196",
             "description": "A Simple Mod that changes the stack size of all itemables to 25000.",
-            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Icons/Zay_All_Stacks_25k-Icon.png",
+            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_25k-Icon.png",
             "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_25k.txt",
             "files": {
                 "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Zay_All_Stacks_25k.EXMODZ"
@@ -78,7 +78,7 @@
             "version": "1.2.196",
             "compatibility": "196",
             "description": "A Simple Mod that changes the stack size of all itemables to 50000.",
-            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Icons/Zay_All_Stacks_50k-Icon.png",
+            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_50k-Icon.png",
             "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_50k.txt",
             "files": {
                 "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Zay_All_Stacks_50k.EXMODZ"
