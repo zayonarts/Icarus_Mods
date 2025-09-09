@@ -2,7 +2,7 @@
 
 Here you gonna find all my mods and my descriptions for them.
 
-# ICARUS Bigger Stacks Mod
+# ICARUS All Stacks Mod
 
 Hate running out of space in your backpack? This mod makes life easier by **raising stack sizes for every stackable item in ICARUS**.  
 
