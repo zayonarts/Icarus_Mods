@@ -6,8 +6,8 @@ This mod modifies all stackable items in ICARUS to have a maximum stack size of 
 Instead of carrying just a few items at a time, you can now stack up to 500 of each item type in a single inventory slot. This significantly reduces inventory management and allows for more efficient resource gathering and storage.
 
 ## Compatibility
-- Version: 1.2.197
-- Compatible with ICARUS week 197+ and future updates
+- Version: 1.2.201
+- Compatible with ICARUS week 201+ and future updates
 
 ## Author
 Created by Zayon
