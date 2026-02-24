@@ -83,6 +83,18 @@
             "files": {
                 "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Zay_All_Stacks_50k.EXMODZ"
             }
+        },
+        {
+            "name": "Zay - Extended Frozen Ore",
+            "author": "Zayon",
+            "version": "1.0",
+            "compatibility": "220",
+            "description": "Extends the Frozen Ore smelting recipe to also yield Platinum Ore and Titanium Ore as possible random outputs, alongside the vanilla ore pool.",
+            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/SimpleMods/Icons/Zay_Extended_Frozen_Ore-Icon.png",
+            "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/SimpleMods/Readme_Info/Zay_Extended_Frozen_Ore.md",
+            "files": {
+                "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/SimpleMods/Zay_Extended_Frozen_Ore.EXMODZ"
+            }
         }
     ]
 }
