@@ -5,7 +5,7 @@
             "author": "Zayon",
             "version": "1.3",
             "compatibility": "221",
-            "description": "A Simple Mod that changes the stack size of all itemables to 500 units.",
+            "description": "This mod modifies all stackable items in ICARUS to have a maximum stack size of 500 units.",
             "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_0.5k-Icon.png",
             "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_0.5k.txt",
             "files": {
@@ -17,7 +17,7 @@
             "author": "Zayon",
             "version": "1.3",
             "compatibility": "221",
-            "description": "A Simple Mod that changes the stack size of all itemables to 1.000 units.",
+            "description": "This mod modifies all stackable items in ICARUS to have a maximum stack size of 1.000 units.",
             "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_1k-Icon.png",
             "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_1k.txt",
             "files": {
@@ -29,7 +29,7 @@
             "author": "Zayon",
             "version": "1.3",
             "compatibility": "221",
-            "description": "A Simple Mod that changes the stack size of all itemables to 2.500 units.",
+            "description": "This mod modifies all stackable items in ICARUS to have a maximum stack size of 2.500 units.",
             "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_2.5k-Icon.png",
             "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_2.5k.txt",
             "files": {
@@ -41,7 +41,7 @@
             "author": "Zayon",
             "version": "1.3",
             "compatibility": "221",
-            "description": "A Simple Mod that changes the stack size of all itemables to 5.000 units.",
+            "description": "This mod modifies all stackable items in ICARUS to have a maximum stack size of 5.000 units.",
             "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_5k-Icon.png",
             "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_5k.txt",
             "files": {
@@ -53,7 +53,7 @@
             "author": "Zayon",
             "version": "1.3",
             "compatibility": "221",
-            "description": "A Simple Mod that changes the stack size of all itemables to 10.000 units.",
+            "description": "This mod modifies all stackable items in ICARUS to have a maximum stack size of 10.000 units.",
             "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_10k-Icon.png",
             "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_10k.txt",
             "files": {
@@ -65,7 +65,7 @@
             "author": "Zayon",
             "version": "1.3",
             "compatibility": "221",
-            "description": "A Simple Mod that changes the stack size of all itemables to 25.000 units.",
+            "description": "This mod modifies all stackable items in ICARUS to have a maximum stack size of 25.000 units.",
             "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_25k-Icon.png",
             "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_25k.txt",
             "files": {
@@ -77,11 +77,47 @@
             "author": "Zayon",
             "version": "1.3",
             "compatibility": "221",
-            "description": "A Simple Mod that changes the stack size of all itemables to 50.000 units.",
+            "description": "This mod modifies all stackable items in ICARUS to have a maximum stack size of 25.000 units.",
             "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_50k-Icon.png",
             "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_50k.txt",
             "files": {
                 "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Zay_All_Stacks_50k.EXMODZ"
+            }
+        },
+        {
+            "name": "Zay - All Stacks [x2]",
+            "author": "Zayon",
+            "version": "1.3",
+            "compatibility": "221",
+            "description": "This mod multiplies the maximum stack size of every stackable item in ICARUS by 2.",
+            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_x2-Icon.png",
+            "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_x2.md",
+            "files": {
+                "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Zay_All_Stacks_x2.EXMODZ"
+            }
+        },
+        {
+            "name": "Zay - All Stacks [x5]",
+            "author": "Zayon",
+            "version": "1.3",
+            "compatibility": "221",
+            "description": "This mod multiplies the maximum stack size of every stackable item in ICARUS by 5.",
+            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_x5-Icon.png",
+            "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_x5.md",
+            "files": {
+                "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Zay_All_Stacks_x5.EXMODZ"
+            }
+        },
+        {
+            "name": "Zay - All Stacks [x10]",
+            "author": "Zayon",
+            "version": "1.3",
+            "compatibility": "221",
+            "description": "This mod multiplies the maximum stack size of every stackable item in ICARUS by 10.",
+            "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Stack_Mods/Icons/Zay_All_Stacks_x10-Icon.png",
+            "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Readme_Info/Zay_All_Stacks_x10.md",
+            "files": {
+                "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Stack_Mods/Zay_All_Stacks_x10.EXMODZ"
             }
         },
         {
