@@ -6,8 +6,8 @@ This mod multiplies the maximum stack size of every stackable item in ICARUS by 
 Each item keeps its own unique stack limit — this mod simply scales all of them up by x10, rounded to a whole number.
 
 ## Compatibility
-- Version: 1.3.221
-- Compatible with ICARUS week 221+ and future updates
+- Version: 1.4.222
+- Compatible with ICARUS week 222+ and future updates
 
 ## Author
 Created by Zayon
