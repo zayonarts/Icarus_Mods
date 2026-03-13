@@ -18,8 +18,8 @@ The two outputs added by this mod:
 > The output is selected randomly -- each smelt picks one ore type from the pool.
 
 ## Compatibility
-- Version: 1.0.222
-- Compatible with ICARUS week 222+ and future updates
+- Version: 1.0.223
+- Compatible with ICARUS week 223+ and future updates
 
 ## Author
 Created by Zayon
