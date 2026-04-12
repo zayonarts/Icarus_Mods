@@ -218,7 +218,7 @@ h1 {
    border-radius: var(--radius-100-px);
    corner-shape: squircle;
    width: 900px;
-   padding: 10px 0px;
+   padding: 30px 0px;
 }
 .is-glossy-text {
    color: var(--color-base-light-010);
