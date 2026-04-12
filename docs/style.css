@@ -20,19 +20,17 @@ body, html {
     align-items: center;
 }
 
-/* --- 3. THE GRIT (Noise Texture) --- */
-.noise-overlay {
+/* --- 3. PARTICLE CANVAS (Bottom Layer) --- */
+#particle-canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1;
-    pointer-events: none;
-    background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.06"/%3E%3C/svg%3E');
+    z-index: 1; /* Changed to positive 1 */
 }
 
-/* --- 4. THE GLOW (Atmospheric Lighting) --- */
+/* --- 4. THE GLOW (Middle Layer) --- */
 .ambient-glow {
     position: fixed;
     top: 50%;
@@ -43,27 +41,30 @@ body, html {
     background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
     opacity: 0.15;
     filter: blur(100px); 
-    z-index: -2;
+    z-index: 2; /* Changed to positive 2 */
     pointer-events: none;
 }
 
-/* --- 5. PARTICLE CANVAS --- */
-#particle-canvas {
+/* --- 5. THE GRIT (Top Background Layer) --- */
+.noise-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -3; 
+    z-index: 3; /* Changed to positive 3 */
+    pointer-events: none;
+    background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.06"/%3E%3C/svg%3E');
 }
 
-/* --- 6. TYPOGRAPHY --- */
+/* --- 6. TYPOGRAPHY (Foremost Layer) --- */
 h1 {
+    position: relative; /* REQUIRED for z-index to work! */
+    z-index: 10;        /* Pulled all the way to the front */
     font-size: 4.5rem;
     font-weight: 800;
     text-align: center;
     letter-spacing: 2px;
     margin: 0;
-    z-index: 1;
     text-shadow: 0 0 20px rgba(6, 182, 212, 0.4), 0 4px 10px rgba(0, 0, 0, 0.8);
 }
