@@ -11,29 +11,30 @@
     }
 }
 
-/* --- 2. PAGE SETUP & BACKGROUND --- */
-html {
-    /* Set a solid dark fallback for the base HTML layer */
-    background-color: #111418; 
-}
-
-body {
+/* --- 2. CLEAN PAGE SETUP --- */
+body, html {
     margin: 0;
     padding: 0;
-    /* Force the body to be exactly the size of the screen */
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
+    background-color: #111418; /* Just a simple, safe dark background */
+}
+
+/* --- 3. STANDALONE UTILITY CLASS --- */
+/* You can add this class to ANY div to give it the rotating background */
+.bg-rotating-glow {
+    /* Make sure the container fills the screen (or whatever size you want) */
+    width: 100vw;
+    min-height: 100vh; 
+    
+    /* Center the content inside it */
     display: flex;
     justify-content: center;
     align-items: center;
 
-    /* Stacked Background Method applied ONLY here */
+    /* The Stacked Background Method */
     background:
-        /* Layer 1: Ellipse stretches better on wide screens than a perfect circle */
+        /* Layer 1: Ellipse keeps the center dark so text is readable */
         radial-gradient(ellipse at center, #111418 40%, transparent 85%),
 
         /* Layer 2: Rotating color sweep */
@@ -52,11 +53,11 @@ body {
     animation: spin-gradient 15s linear infinite;
 }
 
-/* --- 3. TYPOGRAPHY --- */
+/* --- 4. TYPOGRAPHY --- */
 h1 {
     font-size: 4rem;
     font-weight: 800;
-    z-index: 1;
     text-align: center;
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    margin: 0; /* Keeps it perfectly centered */
 }
