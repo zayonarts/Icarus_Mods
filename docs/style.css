@@ -1,7 +1,9 @@
 /* --- 1. GLOBAL VARIABLES --- */
 :root {
-    --accent-color: #b6ff00; /* Icarus Orbital Teal */
-    --bg-base: #0a0e13;                     /* Deep space dark */
+    /* We break #b6ff00 into RGB numbers (182, 255, 0) so we can easily change its opacity everywhere */
+    --accent-rgb: 182, 255, 0; 
+    --accent-color: rgba(var(--accent-rgb), 0.8);
+    --bg-base: #0a0e13;                     
     --text-main: #f8fafc;
 }
 
@@ -37,18 +39,17 @@ body, html {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 2; /* Sits right above the drifting dots */
+    z-index: 2; 
     pointer-events: none;
 
-    /* Creates the double-grid pattern (large 100px squares and small 20px squares) */
+    /* The grid now pulls directly from your green variable! */
     background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
     background-image:
-        linear-gradient(rgba(6, 182, 212, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(6, 182, 212, 0.08) 1px, transparent 1px),
-        linear-gradient(rgba(6, 182, 212, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(6, 182, 212, 0.02) 1px, transparent 1px);
+        linear-gradient(rgba(var(--accent-rgb), 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--accent-rgb), 0.08) 1px, transparent 1px),
+        linear-gradient(rgba(var(--accent-rgb), 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--accent-rgb), 0.02) 1px, transparent 1px);
 
-    /* The magic trick: Fades the grid out so it's strong in the center and vanishes at the edges */
     -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 10%, transparent 80%);
     mask-image: radial-gradient(ellipse at 50% 50%, black 10%, transparent 80%);
 }
@@ -64,7 +65,7 @@ body, html {
     background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
     opacity: 0.15;
     filter: blur(100px); 
-    z-index: 3; /* Glows over the grid */
+    z-index: 3; 
     pointer-events: none;
 }
 
@@ -77,5 +78,6 @@ h1 {
     text-align: center;
     letter-spacing: 2px;
     margin: 0;
-    text-shadow: 0 0 20px rgba(6, 182, 212, 0.4), 0 4px 10px rgba(0, 0, 0, 0.8);
+    /* Text glow now perfectly matches your neon green */
+    text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.4), 0 4px 10px rgba(0, 0, 0, 0.8);
 }
