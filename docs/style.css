@@ -1,10 +1,10 @@
 /* --- 1. GLOBAL VARIABLES --- */
 :root {
    /* We break #b6ff00 into RGB numbers (182, 255, 0) so we can easily change its opacity everywhere */
-    --accent-rgb: 182, 255, 0; 
-    --accent-color: rgba(var(--accent-rgb), 0.8);
-    --bg-base: #0a0e13;                     
-    --text-main: #f8fafc;
+   --accent-rgb: 182, 255, 0;
+   --accent-color: rgba(var(--accent-rgb), 0.8);
+   --bg-base: #0a0e13;
+   --text-main: #f8fafc;
   
   /* ── Surface colors ── */
   --color-base: #0a0e13;
@@ -15,7 +15,7 @@
   --color-item-hover: #252d3d;
 
   /* ── Accent (global default — overridden per-module via container inline vars) ── */
-  --color-accent: #06b6d4;
+  --color-accent: rgba(var(--accent-rgb), 0.8);
   --color-accent-hover: #0891b2;
   --color-accent-press: #0e7490;
 
@@ -211,8 +211,9 @@ h1 {
 
 /* --- Glossyness --- */
 .is-glossy-text {
-  color: var(--color-base-light-0025);
-  text-shadow: inset 0 1px 0 0 var(--color-base-light-010);
+  background: var(--color-base-light-010);
+  box-shadow: inset 0 1px 0 0 var(--color-base-light-010);
+  border: 1px solid color-mix(in srgb, var(--color-accent), transparent 90%);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   /* For Safari support */
