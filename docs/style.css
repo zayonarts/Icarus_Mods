@@ -1,6 +1,6 @@
 /* --- 1. GLOBAL VARIABLES --- */
 :root {
-    --accent-color: rgba(6, 182, 212, 0.8); /* Icarus Orbital Teal */
+    --accent-color: #b6ff00; /* Icarus Orbital Teal */
     --bg-base: #0a0e13;                     /* Deep space dark */
     --text-main: #f8fafc;
 }
