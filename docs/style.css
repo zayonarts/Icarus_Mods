@@ -1,19 +1,21 @@
-/* --- 1. CLEAN PAGE SETUP --- */
+/* --- 1. GLOBAL VARIABLES --- */
+:root {
+    --bg-accent: rgba(32, 160, 160, 0.6); /* Boosted to 0.6 so it pops better! */
+    --bg-secondary: #2a2d34;
+    --bg-base: #111418;
+}
+
+/* --- 2. CLEAN PAGE SETUP --- */
 body, html {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
-    background-color: #111418; /* Safe fallback */
+    background-color: var(--bg-base); 
 }
 
-/* --- 2. STANDALONE LINEAR FLOW CLASS --- */
+/* --- 3. STANDALONE LINEAR FLOW CLASS --- */
 .bg-linear-glow {
-    /* 👉 EDIT YOUR 3 COLORS HERE 👈 */
-    --bg-accent: rgba(32, 160, 160, 0.4); /* The Teal-blue */
-    --bg-secondary: #2a2d34;              /* The lighter dark grey */
-    --bg-base: #111418;                   /* The solid dark center/base */
-
     width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -22,62 +24,56 @@ body, html {
 
     /* The Stacked Background Method */
     background:
-        /* Layer 1: Center ellipse keeps text readable and fades the middle */
-        radial-gradient(ellipse at center, var(--bg-base) 40%, transparent 80%),
+        /* Layer 1: Center ellipse shrunk down so it only hides directly behind text */
+        radial-gradient(ellipse at center, var(--bg-base) 15%, transparent 60%),
         
-        /* Layer 2: Soft vertical seam blender to seamlessly merge the left and right halves */
-        linear-gradient(90deg, transparent 35%, var(--bg-base) 50%, transparent 65%),
+        /* Layer 2: Middle seam narrowed so it doesn't eat the whole screen */
+        linear-gradient(90deg, transparent 45%, var(--bg-base) 50%, transparent 55%),
 
-        /* Layer 3: Left side vertical gradient pattern (Repeats colors to allow perfect looping) */
+        /* Layer 3: Left panel */
         linear-gradient(0deg, var(--bg-accent) 0%, var(--bg-secondary) 25%, var(--bg-accent) 50%, var(--bg-secondary) 75%, var(--bg-accent) 100%),
 
-        /* Layer 4: Right side vertical gradient pattern */
+        /* Layer 4: Right panel */
         linear-gradient(0deg, var(--bg-accent) 0%, var(--bg-secondary) 25%, var(--bg-accent) 50%, var(--bg-secondary) 75%, var(--bg-accent) 100%),
 
         /* Layer 5: Solid base fallback */
         var(--bg-base);
 
-    /* Size each layer appropriately */
     background-size: 
-        100% 100%, /* Layer 1: Ellipse covers whole screen */
-        100% 100%, /* Layer 2: Seam blender covers whole screen */
-        50% 200%,  /* Layer 3: Left side is exactly 50% wide, 200% tall */
-        50% 200%,  /* Layer 4: Right side is exactly 50% wide, 200% tall */
-        100% 100%; /* Layer 5: Base */
+        100% 100%, 
+        100% 100%, 
+        50% 200%,  
+        50% 200%,  
+        100% 100%; 
     
-    /* Stop layers from repeating horizontally, let the vertical ones repeat naturally */
-    background-repeat: no-repeat, no-repeat, repeat-y, repeat-y, no-repeat;
+    /* CRITICAL FIX: Anchors the panels to the left/right before animation starts */
+    background-position: 
+        center, 
+        center, 
+        left 0%, 
+        right 100%, 
+        center;
 
-    /* Apply the dual-flow animation */
+    background-repeat: no-repeat, no-repeat, repeat-y, repeat-y, no-repeat;
     animation: dual-flow 15s linear infinite;
 }
 
-/* --- 3. THE MAGIC ANIMATION --- */
+/* --- 4. THE MAGIC ANIMATION --- */
 @keyframes dual-flow {
     0% {
-        background-position: 
-            center, 
-            center, 
-            left 0%,    /* Left gradient starts at bottom */
-            right 100%, /* Right gradient starts at top */
-            center;
+        background-position: center, center, left 0%, right 100%, center;
     }
     100% {
-        background-position: 
-            center, 
-            center, 
-            left 100%,  /* Left seamlessly moves UPWARDS */
-            right 0%,   /* Right seamlessly moves DOWNWARDS */
-            center;
+        background-position: center, center, left 100%, right 0%, center;
     }
 }
 
-/* --- 4. TYPOGRAPHY --- */
+/* --- 5. TYPOGRAPHY --- */
 h1 {
     font-size: 4rem;
     font-weight: 800;
     text-align: center;
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
     margin: 0;
-    z-index: 1; /* Keeps text above the gradients */
+    z-index: 1; 
 }
