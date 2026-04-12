@@ -27,10 +27,33 @@ body, html {
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 1; /* Changed to positive 1 */
+    z-index: 1; 
 }
 
-/* --- 4. THE GLOW (Middle Layer) --- */
+/* --- 4. THE HUD GRID (Math Paper Overlay) --- */
+.grid-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2; /* Sits right above the drifting dots */
+    pointer-events: none;
+
+    /* Creates the double-grid pattern (large 100px squares and small 20px squares) */
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-image:
+        linear-gradient(rgba(6, 182, 212, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6, 182, 212, 0.08) 1px, transparent 1px),
+        linear-gradient(rgba(6, 182, 212, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6, 182, 212, 0.02) 1px, transparent 1px);
+
+    /* The magic trick: Fades the grid out so it's strong in the center and vanishes at the edges */
+    -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 10%, transparent 80%);
+    mask-image: radial-gradient(ellipse at 50% 50%, black 10%, transparent 80%);
+}
+
+/* --- 5. THE GLOW (Atmospheric Lighting) --- */
 .ambient-glow {
     position: fixed;
     top: 50%;
@@ -41,26 +64,14 @@ body, html {
     background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
     opacity: 0.15;
     filter: blur(100px); 
-    z-index: 2; /* Changed to positive 2 */
+    z-index: 3; /* Glows over the grid */
     pointer-events: none;
-}
-
-/* --- 5. THE GRIT (Top Background Layer) --- */
-.noise-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 3; /* Changed to positive 3 */
-    pointer-events: none;
-    background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.06"/%3E%3C/svg%3E');
 }
 
 /* --- 6. TYPOGRAPHY (Foremost Layer) --- */
 h1 {
-    position: relative; /* REQUIRED for z-index to work! */
-    z-index: 10;        /* Pulled all the way to the front */
+    position: relative; 
+    z-index: 10;        
     font-size: 4.5rem;
     font-weight: 800;
     text-align: center;
