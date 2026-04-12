@@ -58,6 +58,7 @@
    --radius-xl: 10px;
    --radius-2xl: 12px;
    --radius-full: 50%;
+   --radius-100-px: 100px;
    
    /* ── Typography ── */
    --font-size-xs: 10px;
@@ -214,11 +215,13 @@ h1 {
    border: 1px solid color-mix(in srgb, var(--color-accent), transparent 90%);
    backdrop-filter: blur(4px);
    -webkit-backdrop-filter: blur(4px);
-   border-radius: var(--radius-xs);
+   border-radius: var(--radius-100-px);
+   corner-shape: squircle;
    width: 900px;
    padding: 10px 0px;
 }
 .is-glossy-text {
    color: var(--color-base-light-010);
    text-shadow: 0 3px 3px rgba(var(--accent-rgb), 0.05);
+   text-box: trim-both cap alphabetic;
 }
