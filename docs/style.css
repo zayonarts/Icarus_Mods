@@ -1,56 +1,75 @@
-/* --- 1. ANIMATION SETUP --- */
-@property --bg-angle {
-    syntax: '<angle>';
-    initial-value: 0deg;
-    inherits: false;
-}
-
-@keyframes spin-gradient {
-    to {
-        --bg-angle: 360deg;
-    }
-}
-
-/* --- 2. CLEAN PAGE SETUP --- */
+/* --- 1. CLEAN PAGE SETUP --- */
 body, html {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
-    background-color: #111418; /* Just a simple, safe dark background */
+    background-color: #111418; /* Safe fallback */
 }
 
-/* --- 3. STANDALONE UTILITY CLASS --- */
-/* You can add this class to ANY div to give it the rotating background */
-.bg-rotating-glow {
-    /* Make sure the container fills the screen (or whatever size you want) */
+/* --- 2. STANDALONE LINEAR FLOW CLASS --- */
+.bg-linear-glow {
+    /* 👉 EDIT YOUR 3 COLORS HERE 👈 */
+    --bg-accent: rgba(32, 160, 160, 0.4); /* The Teal-blue */
+    --bg-secondary: #2a2d34;              /* The lighter dark grey */
+    --bg-base: #111418;                   /* The solid dark center/base */
+
     width: 100vw;
-    min-height: 100vh; 
-    
-    /* Center the content inside it */
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 
     /* The Stacked Background Method */
     background:
-        /* Layer 1: Ellipse keeps the center dark so text is readable */
-        radial-gradient(ellipse at center, #111418 40%, transparent 85%),
+        /* Layer 1: Center ellipse keeps text readable and fades the middle */
+        radial-gradient(ellipse at center, var(--bg-base) 40%, transparent 80%),
+        
+        /* Layer 2: Soft vertical seam blender to seamlessly merge the left and right halves */
+        linear-gradient(90deg, transparent 35%, var(--bg-base) 50%, transparent 65%),
 
-        /* Layer 2: Rotating color sweep */
-        conic-gradient(from var(--bg-angle) at 50% 50%,
-            rgba(32, 160, 160, 0.4) 0deg,   
-            #2a2d34 90deg,                  
-            rgba(32, 160, 160, 0.4) 180deg, 
-            #2a2d34 270deg,                 
-            rgba(32, 160, 160, 0.4) 360deg  
-        ),
+        /* Layer 3: Left side vertical gradient pattern (Repeats colors to allow perfect looping) */
+        linear-gradient(0deg, var(--bg-accent) 0%, var(--bg-secondary) 25%, var(--bg-accent) 50%, var(--bg-secondary) 75%, var(--bg-accent) 100%),
 
-        /* Layer 3: Solid dark grey base */
-        #111418;
+        /* Layer 4: Right side vertical gradient pattern */
+        linear-gradient(0deg, var(--bg-accent) 0%, var(--bg-secondary) 25%, var(--bg-accent) 50%, var(--bg-secondary) 75%, var(--bg-accent) 100%),
 
-    /* Apply the rotation animation */
-    animation: spin-gradient 15s linear infinite;
+        /* Layer 5: Solid base fallback */
+        var(--bg-base);
+
+    /* Size each layer appropriately */
+    background-size: 
+        100% 100%, /* Layer 1: Ellipse covers whole screen */
+        100% 100%, /* Layer 2: Seam blender covers whole screen */
+        50% 200%,  /* Layer 3: Left side is exactly 50% wide, 200% tall */
+        50% 200%,  /* Layer 4: Right side is exactly 50% wide, 200% tall */
+        100% 100%; /* Layer 5: Base */
+    
+    /* Stop layers from repeating horizontally, let the vertical ones repeat naturally */
+    background-repeat: no-repeat, no-repeat, repeat-y, repeat-y, no-repeat;
+
+    /* Apply the dual-flow animation */
+    animation: dual-flow 15s linear infinite;
+}
+
+/* --- 3. THE MAGIC ANIMATION --- */
+@keyframes dual-flow {
+    0% {
+        background-position: 
+            center, 
+            center, 
+            left 0%,    /* Left gradient starts at bottom */
+            right 100%, /* Right gradient starts at top */
+            center;
+    }
+    100% {
+        background-position: 
+            center, 
+            center, 
+            left 100%,  /* Left seamlessly moves UPWARDS */
+            right 0%,   /* Right seamlessly moves DOWNWARDS */
+            center;
+    }
 }
 
 /* --- 4. TYPOGRAPHY --- */
@@ -59,5 +78,6 @@ h1 {
     font-weight: 800;
     text-align: center;
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
-    margin: 0; /* Keeps it perfectly centered */
+    margin: 0;
+    z-index: 1; /* Keeps text above the gradients */
 }
