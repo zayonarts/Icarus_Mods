@@ -1,6 +1,11 @@
 /* --- 1. GLOBAL VARIABLES --- */
 :root {
-
+   /* We break #b6ff00 into RGB numbers (182, 255, 0) so we can easily change its opacity everywhere */
+    --accent-rgb: 182, 255, 0; 
+    --accent-color: rgba(var(--accent-rgb), 0.8);
+    --bg-base: #0a0e13;                     
+    --text-main: #f8fafc;
+  
   /* ── Surface colors ── */
   --color-base: #0a0e13;
   --color-base-hover: #0f1319;
