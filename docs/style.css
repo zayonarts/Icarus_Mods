@@ -71,13 +71,34 @@ body, html {
 
 /* --- 6. TYPOGRAPHY (Foremost Layer) --- */
 h1 {
-    position: relative; 
+    /* Moves the text to the top of the page */
+    position: absolute; 
+    top: 3rem;
     z-index: 10;        
     font-size: 4.5rem;
     font-weight: 800;
     text-align: center;
     letter-spacing: 2px;
     margin: 0;
-    /* Text glow now perfectly matches your neon green */
-    text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.4), 0 4px 10px rgba(0, 0, 0, 0.8);
+
+    /* --- THE GLASS TEXT EFFECT --- */
+    /* 1. A gradient mimicking physical glass (Bright glare on top, sharp horizon line, tinted reflection on bottom) */
+    background: linear-gradient(
+        180deg, 
+        rgba(255, 255, 255, 0.95) 0%,   /* Bright white top glare */
+        rgba(255, 255, 255, 0.2) 48%,   /* Fades to highly transparent */
+        rgba(var(--accent-rgb), 0.3) 50%, /* Sharp cut to a subtle green reflection */
+        rgba(var(--accent-rgb), 0.8) 100% /* Solid green base */
+    );
+    
+    /* 2. Paint that gradient ONLY inside the letters */
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* 3. Make the actual text invisible so we see the gradient and the background behind it */
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+    /* 4. Use drop-shadow (instead of text-shadow) to give the "glass" physical depth over the grid */
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 15px rgba(var(--accent-rgb), 0.3));
 }
