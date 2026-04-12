@@ -206,15 +206,17 @@ h1 {
     letter-spacing: 2px;
     margin: 0;
     /* Text glow now perfectly matches your neon green */
-    text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.4), 0 4px 10px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 3px 3px rgba(var(--accent-rgb), 0.05);
 }
 
 /* --- Glossyness --- */
 .is-glossy-text {
-  background: var(--color-base-light-010);
-  box-shadow: inset 0 1px 0 0 var(--color-base-light-010);
-  border: 1px solid color-mix(in srgb, var(--color-accent), transparent 90%);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  /* For Safari support */
+    background: var(--color-base-light-0025);
+    color: var(--color-base-light-010);
+    box-shadow: inset 0 1px 0 0 var(--color-base-light-010);
+    border: 1px solid color-mix(in srgb, var(--color-accent), transparent 90%);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 15px 60px;
+    border-radius: var(--radius-xs);
 }
