@@ -1,4 +1,4 @@
-/* --- 1. ANIMATION SETUP (Adapted from global.css) --- */
+/* --- 1. ANIMATION SETUP --- */
 @property --bg-angle {
     syntax: '<angle>';
     initial-value: 0deg;
@@ -12,31 +12,40 @@
 }
 
 /* --- 2. PAGE SETUP & BACKGROUND --- */
-body, html {
+html {
+    /* Set a solid dark fallback for the base HTML layer */
+    background-color: #111418; 
+}
+
+body {
     margin: 0;
     padding: 0;
-    min-height: 100vh;
+    /* Force the body to be exactly the size of the screen */
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    /* Stacked Background Method */
+    /* Stacked Background Method applied ONLY here */
     background:
-        /* Layer 1 (Top): Dark center fading to transparent edges */
-        radial-gradient(circle at 50% 50%, #111418 45%, transparent 100%),
+        /* Layer 1: Ellipse stretches better on wide screens than a perfect circle */
+        radial-gradient(ellipse at center, #111418 40%, transparent 85%),
 
-        /* Layer 2 (Middle): Rotating color sweep using your custom colors */
+        /* Layer 2: Rotating color sweep */
         conic-gradient(from var(--bg-angle) at 50% 50%,
-            rgba(32, 160, 160, 0.4) 0deg,   /* Teal-blue faded */
-            #2a2d34 90deg,                  /* Lighter dark grey */
-            rgba(32, 160, 160, 0.4) 180deg, /* Teal-blue faded */
-            #2a2d34 270deg,                 /* Lighter dark grey */
-            rgba(32, 160, 160, 0.4) 360deg  /* Back to Teal-blue */
+            rgba(32, 160, 160, 0.4) 0deg,   
+            #2a2d34 90deg,                  
+            rgba(32, 160, 160, 0.4) 180deg, 
+            #2a2d34 270deg,                 
+            rgba(32, 160, 160, 0.4) 360deg  
         ),
 
-        /* Layer 3 (Bottom): Solid dark grey fallback */
+        /* Layer 3: Solid dark grey base */
         #111418;
 
     /* Apply the rotation animation */
