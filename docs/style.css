@@ -1,0 +1,58 @@
+/* --- PAGE SETUP --- */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    background-color: #111418; /* Really dark grey fallback */
+    overflow: hidden; /* Prevents scrollbars */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- ROTATING BACKGROUND --- */
+.rotating-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200vmax; /* Ensures corners are always covered */
+    height: 200vmax;
+    z-index: -2;
+    background: conic-gradient(
+        from 0deg,
+        rgba(32, 160, 160, 0.4) 0deg,   
+        #2a2d34 90deg,                  
+        rgba(32, 160, 160, 0.4) 180deg, 
+        #2a2d34 270deg,                 
+        rgba(32, 160, 160, 0.4) 360deg  
+    );
+    animation: spinBg 15s linear infinite;
+}
+
+@keyframes spinBg {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* --- DARK CENTER OVERLAY --- */
+.dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    /* Keeps the center really dark grey (#111418) and fades out at the edges */
+    background: radial-gradient(circle at center, #111418 50%, rgba(17, 20, 24, 0.2) 100%);
+}
+
+/* --- TYPOGRAPHY --- */
+h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    z-index: 1;
+    text-align: center;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+}
