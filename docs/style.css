@@ -279,6 +279,10 @@ html {
    cursor: pointer;
    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
    overflow: hidden;
+   /* Fixed blur logic for iOS/Chromium (GPU forced) */
+   backdrop-filter: blur(2px);
+   -webkit-backdrop-filter: blur(2px);
+   transform: translateZ(0);
 }
 
 .stat-card-inner {
@@ -292,7 +296,6 @@ html {
       linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
    background-size: 8px 8px;
-   backdrop-filter: blur(4px);
 }
 
 /* Card Decor */
@@ -447,15 +450,13 @@ html {
    display: flex;
    flex-direction: column;
    gap: 20px;
-   opacity: 0;
-   transform: translateY(20px);
-   animation: mod-reveal 0.8s ease forwards;
+   /* Entrance animation removed globally to restore native Chromium composite integrity */
 }
 
 @keyframes mod-reveal {
-   to {
+   100% {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
    }
 }
 
@@ -507,7 +508,10 @@ html {
    flex-direction: column;
    gap: 15px;
    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+   /* Native glassmorphism logic */
    backdrop-filter: blur(2px);
+   -webkit-backdrop-filter: blur(2px);
+   transform: translateZ(0);
    /* Tiny bg grid */
    background-image:
       radial-gradient(rgba(var(--cat-color-rgb, var(--accent-rgb)), 0.05) 1px, transparent 1px);
@@ -991,18 +995,29 @@ html {
 }
 
 .hud-top-btn {
-   background: rgba(10, 14, 19, 0.6);
-   /* Darker, less transparent base */
+   background: rgba(var(--accent-rgb), 0.05);
    backdrop-filter: blur(8px);
-   /* Sleek glass effect */
    padding: 12px 15px;
-   /* Boxier for icon */
    font-size: 1rem;
-   /* Larger icon */
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
    opacity: 0;
    pointer-events: none;
    transform: translateY(10px) scale(0.9);
+}
+
+.hud-top-btn:hover {
+   background: var(--accent-color);
+   color: var(--bg-base);
+   box-shadow: 0 0 20px var(--accent-color);
+   opacity: 1; /* Ensure visible on hover */
+}
+
+/* Match Hover Effects for Engagement Dialog Buttons */
+.close-dialog-btn:hover,
+.download-source-btn:hover {
+   background: var(--accent-color);
+   color: var(--bg-base);
+   box-shadow: 0 0 20px var(--accent-color);
 }
 
 .hud-top-btn.visible {
@@ -1034,4 +1049,123 @@ html {
 
 #jump-to-top-popup.visible {
    transform: translateX(-50%) translateY(0) scale(1);
+}
+
+/* --- RESPONSIVE MOBILE CALIBRATION (PHONE OPTIMIZATION) --- */
+@media (max-width: 768px) {
+
+   /* 1. Declutter Ambient Telemetry */
+   .hud-decor-side,
+   #init-status,
+   #init-version {
+      display: none !important;
+   }
+
+   /* 2. Top Header adjustments */
+   .hud-top-bar {
+      padding: 0 15px;
+      justify-content: center;
+   }
+
+   .is-glossy-text {
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-align: center;
+   }
+
+   /* 3. Logic Cluster adjustments */
+   .hud-center-cluster {
+      padding: 80px 15px 30px;
+   }
+
+   /* Stack Logic Cards Vertically */
+   .stats-dashboard {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      padding: 20px 20px;
+      /* Expand bounding box so brackets clear the cards */
+   }
+
+   /* Scale bracket geometries down to fit mobile layout */
+   .stats-dashboard::before,
+   .stats-dashboard::after {
+      width: 40px;
+      height: 40px;
+   }
+
+   .stat-card {
+      width: 160px;
+      /* Slightly scaled horizontally */
+      aspect-ratio: 16 / 9;
+      /* Shorter vertically */
+   }
+
+   .stat-value {
+      font-size: 1.8rem;
+   }
+
+   /* 4. Mod Browser & Engagement Grids */
+   .mod-grid {
+      grid-template-columns: 1fr;
+      /* Force 1 column on phone */
+      gap: 15px;
+   }
+
+   .category-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+   }
+
+   .category-desc {
+      margin-left: 0;
+   }
+
+   /* 5. Engagement Modal Scaling */
+   #mod-details-dialog {
+      width: 95vw;
+   }
+
+   .dialog-inner {
+      padding: 40px 15px 20px;
+   }
+
+   /* Footer Button Stacking */
+   .dialog-footer {
+      flex-direction: column;
+      gap: 15px;
+      align-items: stretch;
+   }
+
+   .dialog-footer .close-dialog-btn,
+   .dialog-footer .download-source-btn {
+      width: 100%;
+      box-sizing: border-box;
+   }
+
+   /* Adjust floating popup button so it avoids stacked footer overlaps */
+   #jump-to-top-popup {
+      bottom: 20px;
+      left: auto;
+      right: 15px;
+      transform: translateY(10px) scale(0.85);
+      /* Off-center and scaled */
+   }
+
+   #jump-to-top-popup.visible {
+      transform: translateY(0) scale(0.85);
+   }
+
+   /* Adjust main button anchor */
+   #back-to-top-main {
+      bottom: 20px;
+      /* Dropped down to occupy freed telemetry space */
+      right: 15px;
+      transform: translateY(10px) scale(0.85);
+   }
+
+   #back-to-top-main.visible {
+      transform: translateY(0) scale(0.85);
+   }
 }
