@@ -1,18 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zayon's Icarus Mods</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <canvas id="particle-canvas"></canvas>
     <div class="grid-overlay"></div>
     <div class="ambient-glow"></div>
-    <h1 class="is-glossy is-glossy-text">Zayon's Icarus Mods</h1>
+
+    <!-- HUD Header Area -->
+    <header class="hud-top-bar is-glossy">
+        <div class="hud-status" id="init-status">
+            <span class="status-dot"></span>
+            <span class="status-text">SYSTEM: ONLINE <span class="hud-spinner"></span></span>
+        </div>
+        <h1 class="is-glossy-text" id="main-title">Zayon's Icarus Mods</h1>
+        <div class="hud-version" id="init-version">VER: 1.0.42_STABLE</div>
+    </header>
+
+    <!-- Global Scroll Progression Bar -->
+    <div id="main-progress-container">
+        <div id="main-progress-bar"></div>
+    </div>
+
+    <main class="hud-center-cluster">
+        <section class="stats-dashboard">
+            <div class="stat-card" data-glitch="mods">
+                <div class="stat-card-inner">
+                    <span class="stat-label">Mods</span>
+                    <span class="stat-value" id="count-mods">0</span>
+                </div>
+                <div class="glitch-line"></div>
+            </div>
+
+            <div class="stat-card" data-glitch="entries">
+                <div class="stat-card-inner">
+                    <span class="stat-label">Entries</span>
+                    <span class="stat-value" id="count-entries">0</span>
+                </div>
+                <div class="glitch-line"></div>
+            </div>
+
+            <div class="stat-card" data-glitch="recipes">
+                <div class="stat-card-inner">
+                    <span class="stat-label">Recipes</span>
+                    <span class="stat-value" id="count-recipes">0</span>
+                </div>
+                <div class="glitch-line"></div>
+            </div>
+        </section>
+
+        <!-- Dynamic Mod Browser -->
+        <section id="mod-browser" class="mod-grid-container">
+            <!-- Dynamically populated categories and mods -->
+            <div id="category-loader" class="loader-text">INITIALIZING QUANTUM INDEX...</div>
+        </section>
+    </main>
+
+    <!-- HUD Side Readouts -->
+    <aside class="hud-decor-side left">
+        <div class="decor-block">LAT: <span id="hud-lat">0.0000</span></div>
+        <div class="decor-block">LNG: <span id="hud-lng">0.0000</span></div>
+    </aside>
+
+    <aside class="hud-decor-side right">
+        <div class="decor-block">UPTIME: 99.9%</div>
+        <div class="decor-block">FLX: ACTIVE</div>
+    </aside>
+    <!-- Global Mod Engagement Modal -->
+    <dialog id="mod-details-dialog">
+        <div id="scroll-progress-container">
+            <div id="scroll-progress-bar"></div>
+        </div>
+        <div class="dialog-bracket tl"></div>
+        <div class="dialog-bracket tr"></div>
+        <div class="dialog-bracket bl"></div>
+        <div class="dialog-bracket br"></div>
+
+        <div class="dialog-inner">
+            <header class="dialog-content-header">
+                <h2 id="modal-title" class="dialog-title">INITIALIZING DATA...</h2>
+            </header>
+
+            <div id="modal-content" class="markdown-body">
+                <!-- Content injected via JS -->
+                PACKET PENDING...
+            </div>
+
+            <footer class="dialog-footer">
+                <button class="close-dialog-btn" id="close-modal">CLOSE INTERFACE</button>
+                <a id="download-source" href="#" target="_blank" class="download-source-btn">DOWNLOAD SOURCE</a>
+            </footer>
+        </div>
+
+        <!-- Popup Absolute Navigation -->
+        <button id="jump-to-top-popup" class="hud-top-btn" title="Jump to Top"><i class="fa-solid fa-arrow-up"></i></button>
+    </dialog>
+
+    <!-- Global Absolute Navigation -->
+    <button id="back-to-top-main" class="hud-top-btn" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
     <script src="script.js"></script>
 
 </body>
+
 </html>

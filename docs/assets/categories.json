@@ -1,0 +1,18 @@
+{
+    "Categories": {
+        "Stack_Mods": {
+            "Name": "Stack Mods",
+            "Description": "Mods that increase stack sizes for survival efficiency.",
+            "Color": "#00f2ff",
+            "Icon": "fa-layer-group",
+            "Folder": "Stack_Mods"
+        },
+        "SimpleMods": {
+            "Name": "Simple Mods",
+            "Description": "Lightweight additions and quality of life tweaks.",
+            "Color": "#ffcc00",
+            "Icon": "fa-microchip",
+            "Folder": "SimpleMods"
+        }
+    }
+}
