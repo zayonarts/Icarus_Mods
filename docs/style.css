@@ -37,7 +37,8 @@ html {
 /* Firefox */
 * {
    scrollbar-width: none;
-   -ms-overflow-style: none; /* IE/Edge */
+   -ms-overflow-style: none;
+   /* IE/Edge */
 }
 
 /* --- 3. ATMOSPHERIC LAYERS --- */
@@ -150,8 +151,10 @@ html {
    font-weight: 100;
    /* Ultra-thin as requested */
    color: var(--accent-color);
-   font-size: 1.2rem;
+   font-size: 1.1rem;
    margin-left: 10px;
+   vertical-align: middle;
+   transform: translateY(-2px);
 }
 
 .hud-spinner::after {
@@ -939,89 +942,96 @@ html {
 
 /* Dialog Footer */
 .dialog-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(var(--accent-rgb), 0.1);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-top: 30px;
+   padding-top: 20px;
+   border-top: 1px solid rgba(var(--accent-rgb), 0.1);
 }
 
 /* Main Page Scroll Progression Sidebar */
 #main-progress-container {
-    position: fixed;
-    top: 60px; /* Directly under the HUD Header */
-    left: 0;
-    width: 100vw;
-    height: 4px;
-    background: rgba(var(--accent-rgb), 0.05);
-    z-index: 90;
+   position: fixed;
+   top: 60px;
+   /* Directly under the HUD Header */
+   left: 0;
+   width: 100vw;
+   height: 4px;
+   background: rgba(var(--accent-rgb), 0.05);
+   z-index: 90;
 }
 
 #main-progress-bar {
-    height: 100%;
-    width: 0%;
-    background: var(--accent-color);
-    box-shadow: 0 0 15px var(--accent-color);
-    transition: width 0.1s ease-out;
+   height: 100%;
+   width: 0%;
+   background: var(--accent-color);
+   box-shadow: 0 0 15px var(--accent-color);
+   transition: width 0.1s ease-out;
 }
 
 /* Shared HUD Button Styles */
 .close-dialog-btn,
 .download-source-btn,
 .hud-top-btn {
-    font-family: 'Segoe UI', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--accent-color);
-    padding: 12px 20px;
-    background: rgba(var(--accent-rgb), 0.05);
-    border: 1px solid var(--accent-color);
-    transition: all 0.3s;
-    letter-spacing: 2px;
-    cursor: pointer;
-    text-align: center;
-    line-height: 1;
+   font-family: 'Segoe UI', sans-serif;
+   font-size: 0.7rem;
+   font-weight: 900;
+   text-transform: uppercase;
+   text-decoration: none;
+   color: var(--accent-color);
+   padding: 12px 20px;
+   background: rgba(var(--accent-rgb), 0.05);
+   border: 1px solid var(--accent-color);
+   transition: all 0.3s;
+   letter-spacing: 2px;
+   cursor: pointer;
+   text-align: center;
+   line-height: 1;
 }
 
 .hud-top-btn {
-    background: rgba(10, 14, 19, 0.6); /* Darker, less transparent base */
-    backdrop-filter: blur(8px); /* Sleek glass effect */
-    padding: 12px 15px; /* Boxier for icon */
-    font-size: 1rem; /* Larger icon */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(10px) scale(0.9);
+   background: rgba(10, 14, 19, 0.6);
+   /* Darker, less transparent base */
+   backdrop-filter: blur(8px);
+   /* Sleek glass effect */
+   padding: 12px 15px;
+   /* Boxier for icon */
+   font-size: 1rem;
+   /* Larger icon */
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+   opacity: 0;
+   pointer-events: none;
+   transform: translateY(10px) scale(0.9);
 }
 
 .hud-top-btn.visible {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0) scale(1);
+   opacity: 1;
+   pointer-events: auto;
+   transform: translateY(0) scale(1);
 }
 
 /* Main Page Back to Top - Floating Fixed Positioning */
 #back-to-top-main {
-    position: fixed;
-    bottom: 125px; /* Safely above the UPTIME/FLX readouts */
-    right: 40px;
-    z-index: 1000;
-    min-width: 45px;
+   position: fixed;
+   bottom: 125px;
+   /* Safely above the UPTIME/FLX readouts */
+   right: 40px;
+   z-index: 1000;
+   min-width: 45px;
 }
 
 /* Popup Middle Button - Floating Absolute Positioning */
 #jump-to-top-popup {
-    position: absolute;
-    bottom: 40px; /* Aligns visually with the padding/height of the dialog footer */
-    left: 50%;
-    transform: translateX(-50%) translateY(10px) scale(0.9);
-    min-width: 45px;
-    z-index: 100;
+   position: absolute;
+   bottom: 40px;
+   /* Aligns visually with the padding/height of the dialog footer */
+   left: 50%;
+   transform: translateX(-50%) translateY(10px) scale(0.9);
+   min-width: 45px;
+   z-index: 100;
 }
 
 #jump-to-top-popup.visible {
-    transform: translateX(-50%) translateY(0) scale(1);
+   transform: translateX(-50%) translateY(0) scale(1);
 }
