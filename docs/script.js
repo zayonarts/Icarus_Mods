@@ -226,9 +226,15 @@ async function initModBrowser() {
 
     try {
         // Step 1: Fetch Manifests
+        // Auto-detect environment to bypass GitHub Pages directory restrictions
+        const isGithubPages = window.location.hostname.includes('github.io');
+        const modinfoUrl = isGithubPages 
+            ? 'https://raw.githubusercontent.com/zayonarts/Icarus_Mods/main/modinfo.json'
+            : '../modinfo.json';
+
         const [catRes, modinfoRes] = await Promise.all([
             fetch('assets/categories.json'),
-            fetch('../modinfo.json') // Reaching up to root from docs/
+            fetch(modinfoUrl)
         ]);
 
         if (!catRes.ok || !modinfoRes.ok) throw new Error("Index Fetch Failure");
