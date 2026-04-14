@@ -5,7 +5,7 @@
    --accent-color: rgba(var(--accent-rgb), 0.8);
    --bg-base: #0a0e13;
    --text-main: #f8fafc;
-   
+
    /* ── Surface colors ── */
    --color-base: #0a0e13;
    --color-base-hover: #0f1319;
@@ -13,43 +13,43 @@
    --color-elevated: #1e242d;
    --color-input: #161920;
    --color-item-hover: #252d3d;
-   
+
    /* ── Accent (global default — overridden per-module via container inline vars) ── */
    --color-accent: rgba(var(--accent-rgb), 0.8);
    --color-accent-hover: #0891b2;
    --color-accent-press: #0e7490;
-   
+
    /* ── Text ── */
    --color-text-primary: #f8fafc;
    --color-text-secondary: #cbd5e1;
-   
+
    /* ── Border ── */
    --color-border: #334155;
-   
+
    /* ── Status colors ── */
    --color-success: #10b981;
    --color-warning: #f59e0b;
-   
+
    /* ── Danger ── */
    --color-danger: #f87171;
    --color-danger-bg: #7f1d1d;
    --color-danger-bg-deep: #991b1b;
    --color-danger-text: #fecaca;
-   
+
    /* ── Add / success variant ── */
    --color-add: #4ade80;
    --color-add-bg: #14532d;
    --color-add-text: #bbf7d0;
-   
+
    /* ── Dev (design panel / dev-only features) ── */
    --color-dev: #a855f7;
-   
+
    /* ── Shadows ── */
    --shadow-panel: 0px 7px 7px -4px rgba(0, 0, 0, 0.35);
    --shadow-float: 0px 7px 7px -4px rgba(0, 0, 0, 0.35);
    --shadow-dialog: 0 24px 64px rgba(0, 0, 0, 0.7);
    --shadow-overlay: 0 20px 60px rgba(0, 0, 0, 0.6);
-   
+
    /* ── Border radius ── */
    --radius-xs: 3px;
    --radius-sm: 5px;
@@ -59,17 +59,17 @@
    --radius-2xl: 12px;
    --radius-full: 50%;
    --radius-100-px: 100px;
-   
+
    /* ── Typography ── */
    --font-size-xs: 10px;
    --font-size-sm: 11px;
    --font-size-md: 12px;
    --font-size-base: 13px;
-   
+
    /* ── Transitions ── */
    --transition-fast: 0.12s;
    --transition-base: 0.15s;
-   
+
    /* ── Darker variants ── */
    --color-base-dark-0025: rgba(0, 0, 0, 0.025);
    --color-base-dark-005: rgba(0, 0, 0, 0.05);
@@ -91,7 +91,7 @@
    --color-base-dark-085: rgba(0, 0, 0, 0.85);
    --color-base-dark-090: rgba(0, 0, 0, 0.9);
    --color-base-dark-095: rgba(0, 0, 0, 0.95);
-   
+
    /* ── Lighter variants ── */
    --color-base-light-0025: rgba(255, 255, 255, 0.025);
    --color-base-light-005: rgba(255, 255, 255, 0.05);
@@ -113,21 +113,21 @@
    --color-base-light-085: rgba(255, 255, 255, 0.85);
    --color-base-light-090: rgba(255, 255, 255, 0.9);
    --color-base-light-095: rgba(255, 255, 255, 0.95);
-   
+
    /* ── Gloss & Glass Effects ── */
    --glass-reflection: rgba(255, 255, 255, 0.08);
    --glass-shimmer: rgba(255, 255, 255, 0.03);
-   
+
    /* Dynamically fades your accent for the "glow" background */
    --color-accent-glimmer: color-mix(in srgb, var(--color-accent), transparent 92%);
    --color-accent-border: color-mix(in srgb, var(--color-accent), transparent 70%);
-   
+
    /* Corner size for glossy corners */
    --corner-size-5: 5px;
    --corner-size-10: 10px;
    --corner-size-15: 15px;
    --corner-size-20: 20px;
-   
+
    --corner-thickness-1: 1px;
    --corner-thickness-2: 2px;
    --corner-thickness-3: 3px;
@@ -135,15 +135,16 @@
 }
 
 /* --- 2. BASE SETUP --- */
-body, html {
+body,
+html {
    margin: 0;
    padding: 0;
    width: 100vw;
    height: 100vh;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-   color: var(--text-main);
-   background-color: var(--bg-base);
-   overflow: hidden; 
+   color: var(--color-text-primary);
+   background-color: var(--color-base);
+   overflow: hidden;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -156,7 +157,7 @@ body, html {
    left: 0;
    width: 100vw;
    height: 100vh;
-   z-index: 1; 
+   z-index: 1;
 }
 
 /* --- 4. THE HUD GRID (Math Paper Overlay) --- */
@@ -166,9 +167,9 @@ body, html {
    left: 0;
    width: 100vw;
    height: 100vh;
-   z-index: 2; 
+   z-index: 2;
    pointer-events: none;
-   
+
    /* The grid now pulls directly from your green variable! */
    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
    background-image:
@@ -176,7 +177,7 @@ body, html {
       linear-gradient(90deg, rgba(var(--accent-rgb), 0.08) 1px, transparent 1px),
       linear-gradient(rgba(var(--accent-rgb), 0.02) 1px, transparent 1px),
       linear-gradient(90deg, rgba(var(--accent-rgb), 0.02) 1px, transparent 1px);
-   
+
    -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 10%, transparent 80%);
    mask-image: radial-gradient(ellipse at 50% 50%, black 10%, transparent 80%);
 }
@@ -191,15 +192,15 @@ body, html {
    height: 60vh;
    background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
    opacity: 0.15;
-   filter: blur(100px); 
-   z-index: 3; 
+   filter: blur(100px);
+   z-index: 3;
    pointer-events: none;
 }
 
 /* --- 6. TYPOGRAPHY (Foremost Layer) --- */
 h1 {
-   position: relative; 
-   z-index: 10;        
+   position: relative;
+   z-index: 10;
    font-size: 4.5rem;
    font-weight: 800;
    text-align: center;
@@ -215,11 +216,11 @@ h1 {
    border: 1px solid color-mix(in srgb, var(--color-accent), transparent 90%);
    backdrop-filter: blur(4px);
    -webkit-backdrop-filter: blur(4px);
-   border-radius: var(--radius-100-px);
-   corner-shape: squircle;
+   border-radius: var(--radius-xs);
    width: 900px;
    padding: 30px 0px;
 }
+
 .is-glossy-text {
    color: var(--color-base-light-010);
    text-shadow: 0 3px 3px rgba(var(--accent-rgb), 0.05);
