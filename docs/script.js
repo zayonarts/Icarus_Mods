@@ -176,10 +176,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Initialize Mod Browser
     initModBrowser();
 
-    // 5. Global Navigation & Telemetry: Back to Top + Progress Bar
+    // 5. Initialize Game Sync Checker
+    initGameSync();
+
+    // 6. Global Navigation & Telemetry: Back to Top + Progress Bar
     const backToTopMain = document.getElementById('back-to-top-main');
     const mainProgressBar = document.getElementById('main-progress-bar');
-    
+
     window.addEventListener('scroll', () => {
         // Scroll Progress Telemetry
         if (mainProgressBar) {
@@ -199,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-    
+
     if (backToTopMain) {
         backToTopMain.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -228,7 +231,7 @@ async function initModBrowser() {
         // Step 1: Fetch Manifests
         // Auto-detect environment to bypass GitHub Pages directory restrictions
         const isGithubPages = window.location.hostname.includes('github.io');
-        const modinfoUrl = isGithubPages 
+        const modinfoUrl = isGithubPages
             ? 'https://raw.githubusercontent.com/zayonarts/Icarus_Mods/main/modinfo.json'
             : '../modinfo.json';
 
@@ -243,7 +246,12 @@ async function initModBrowser() {
         categoriesData = catJson.Categories || catJson; // Handle both nested and direct structures
 
         const modinfoJson = await modinfoRes.json();
-        const mods = modinfoJson.mods || modinfoJson;
+        const mods = modinfoJson.mods || [];
+
+        // Step 2: Trigger Game Sync Comparison
+        if (mods.length > 0) {
+            updateGameSync(mods[0].compatibility);
+        }
 
         // Step 2: Categorize Mods
         const groupedMods = {};
@@ -264,7 +272,9 @@ async function initModBrowser() {
 
         for (const [key, category] of Object.entries(categoriesData)) {
             const modsInCat = groupedMods[key] || [];
-            if (modsInCat.length === 0) continue;
+
+            // Skip empty categories OR categories that are still in 'Placeholder' state (#000000)
+            if (modsInCat.length === 0 || category.Color === "#000000") continue;
 
             const section = document.createElement('section');
             section.className = 'mod-category';
@@ -321,7 +331,10 @@ function createModCard(mod, categoryKey) {
             <h3 class="mod-name">${mod.name}</h3>
             <p class="mod-description">${mod.description.substring(0, 100)}${mod.description.length > 100 ? '...' : ''}</p>
             <div class="mod-meta">
-                <span class="mod-version">V ${mod.version || '1.0.0'}</span>
+                <div class="mod-badges">
+                    <span class="mod-version">V ${mod.version || '1.0.0'}</span>
+                    <span class="mod-week">W ${mod.compatibility || '---'}</span>
+                </div>
                 <button class="mod-link" onclick="openModDetails('${mod.readmeURL}', '${mod.name.replace(/'/g, "\\'")}', '${categoryKey}')">
                     ENGAGE MODULE
                 </button>
@@ -386,7 +399,7 @@ async function openModDetails(url, name, categoryKey) {
                     }
                 }
             } else {
-                progressBar.style.width = '100.5%'; 
+                progressBar.style.width = '100.5%';
                 if (jumpBtn) jumpBtn.classList.remove('visible');
             }
         };
@@ -523,5 +536,51 @@ async function fetchReadmeContent(url, modName) {
         return paragraphs[0] || null;
     } catch {
         return null;
+    }
+}
+
+// --- Game Sync Link System ---
+async function initGameSync() {
+    // Initial fetch of game status - handled inside updateGameSync or a separate loop
+}
+
+async function updateGameSync(modCompatibility) {
+    const syncValueEl = document.getElementById('sync-value');
+    const syncBar = document.getElementById('sync-status');
+    if (!syncValueEl || !syncBar) return;
+
+    const setStatus = (text, color, isAdvisory = false, isOffline = false) => {
+        syncValueEl.textContent = text;
+        syncValueEl.style.color = color;
+        isAdvisory ? syncBar.classList.add('advisory') : syncBar.classList.remove('advisory');
+        isOffline ? syncBar.classList.add('offline') : syncBar.classList.remove('offline');
+    };
+
+    try {
+        const response = await fetch('assets/game_status.json');
+        if (!response.ok) {
+            setStatus("OFFLINE [LINK BREAK]", "#ef4444", false, true);
+            return;
+        }
+
+        const data = await response.json();
+        const latestWeek = parseInt(data.latest_week);
+        const modWeek = parseInt(modCompatibility);
+
+        if (isNaN(latestWeek) || isNaN(modWeek)) {
+            setStatus("DATA UNKNOWN", "#64748b", false, true);
+            return;
+        }
+
+        if (modWeek >= latestWeek) {
+            setStatus(`SYNCED [W${latestWeek}]`, "var(--success-color, #10b981)", false, false);
+        } else {
+            // Advisory mode: Game is ahead of mods
+            setStatus(`ADVISORY [W${latestWeek}]`, "#f59e0b", true, false);
+            syncBar.setAttribute('title', `Legacy versions detected. Mods match Week ${modWeek}, but Game is at Week ${latestWeek}. Mods remain functional but lacks latest update additions.`);
+        }
+    } catch (error) {
+        console.error('Game Sync Error:', error);
+        setStatus("ERROR [LINK FAILURE]", "#ef4444", false, true);
     }
 }

@@ -115,6 +115,155 @@ html {
    opacity: 0.6;
 }
 
+/* --- Game Sync Telemetry Bar --- */
+.sync-status-bar {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   max-width: 510px;
+   /* Exact match for 3 cards + gaps */
+   margin: 10px auto 0;
+   padding: 12px 20px;
+   background: rgba(var(--accent-rgb), 0.03);
+   border: 1px solid rgba(var(--accent-rgb), 0.1);
+   border-radius: 2px;
+   backdrop-filter: blur(5px);
+   -webkit-backdrop-filter: blur(5px);
+   overflow: hidden;
+   z-index: 5;
+   box-sizing: border-box;
+}
+
+.sync-status-inner {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 15px;
+   font-family: 'Courier New', monospace;
+}
+
+.sync-label {
+   color: var(--color-text-secondary);
+   font-size: 0.6rem;
+   letter-spacing: 2px;
+   opacity: 0.6;
+}
+
+.sync-separator {
+   flex-grow: 1;
+   height: 1px;
+   background: linear-gradient(to right, transparent, rgba(var(--accent-rgb), 0.2), transparent);
+}
+
+.sync-value {
+   font-size: 0.75rem;
+   font-weight: 900;
+   letter-spacing: 1px;
+   color: var(--accent-color);
+   text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.4);
+}
+
+.sync-pulse-line {
+   position: absolute;
+   bottom: 0;
+   left: -100%;
+   width: 100%;
+   height: 1px;
+   background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+   animation: h-pulse 4s linear infinite;
+   opacity: 0.5;
+}
+
+@keyframes h-pulse {
+   0% {
+      left: -100%;
+   }
+
+   30% {
+      left: 100%;
+   }
+
+   100% {
+      left: 100%;
+   }
+}
+
+/* Advisory State for the Bar */
+.sync-status-bar.advisory {
+   border-color: rgba(245, 158, 11, 0.4);
+   background: rgba(245, 158, 11, 0.05);
+}
+
+.sync-status-bar.advisory .sync-value {
+   color: #f59e0b;
+   text-shadow: 0 0 15px rgba(245, 158, 11, 0.6);
+   animation: advisory-glitch 4s infinite;
+}
+
+.sync-status-bar.advisory .sync-pulse-line {
+   background: linear-gradient(to right, transparent, #f59e0b, transparent);
+}
+
+@keyframes advisory-glitch {
+
+   0%,
+   90%,
+   100% {
+      transform: none;
+      opacity: 1;
+   }
+
+   92% {
+      transform: skewX(10deg);
+      color: #fff;
+   }
+
+   94% {
+      transform: skewX(-10deg);
+   }
+
+   96% {
+      transform: none;
+      opacity: 1;
+   }
+}
+
+/* Offline/Error State for the Bar */
+.sync-status-bar.offline {
+   border-color: rgba(239, 68, 68, 0.4);
+   background: rgba(239, 68, 68, 0.05);
+}
+
+.sync-status-bar.offline .sync-value {
+   color: #ef4444;
+   text-shadow: 0 0 15px rgba(239, 68, 68, 0.6);
+}
+
+.sync-status-bar.offline .sync-pulse-line {
+   background: linear-gradient(to right, transparent, #ef4444, transparent);
+}
+
+/* Mobile Responsiveness for Sync Bar */
+@media (max-width: 600px) {
+   .sync-status-bar {
+      width: 90vw;
+      padding: 15px;
+   }
+
+   .sync-status-inner {
+      flex-direction: column;
+      gap: 5px;
+      text-align: center;
+   }
+
+   .sync-separator {
+      width: 50%;
+      height: 1px;
+      flex-grow: 0;
+   }
+}
+
 .hud-status {
    display: flex;
    align-items: center;
@@ -241,33 +390,90 @@ html {
 .stats-dashboard {
    position: relative;
    display: flex;
-   gap: 30px;
-   padding: 40px;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 20px 30px;
+   padding: 20px;
+   /* Reduced from 40px to bring brackets in */
+   width: 100%;
+   max-width: 550px;
+   /* Snapped to exact width of cards + spacing */
+   margin: 0 auto;
 }
 
 .stats-dashboard::before,
 .stats-dashboard::after {
    content: "";
    position: absolute;
-   width: 100px;
-   height: 100px;
-   border: 1px solid rgba(var(--accent-rgb), 0.15);
-   pointer-events: none;
-}
-
-.stats-dashboard::before {
-   top: 0;
    left: 0;
-   border-right: none;
-   border-bottom: none;
+   right: 0;
+   height: 3px;
+   /* Shared Radioactive Core Aesthetic */
+   background: repeating-linear-gradient(45deg, var(--accent-color) 0 4px, transparent 4px 8px);
+   background-size: 100% 100%;
+   /* Holographic Tapering */
+   -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+   mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+   pointer-events: none;
+   z-index: 1;
+   box-shadow: 0 0 15px var(--accent-color);
+   opacity: 0.9;
 }
 
-.stats-dashboard::after {
-   bottom: 0;
-   right: 0;
-   border-left: none;
-   border-top: none;
+/* TOP: True Countersweep (Left) */
+.stats-dashboard::before {
+   top: -8px;
+   animation:
+      toxic-flicker 0.1s infinite alternate,
+      hazard-sweep-reverse 4s ease-in-out infinite;
 }
+
+/* BOTTOM: Normal Sweep (Right) */
+.stats-dashboard::after {
+   bottom: -8px;
+   animation:
+      toxic-flicker 0.1s infinite alternate,
+      hazard-sweep 4s ease-in-out infinite;
+}
+
+@keyframes hazard-sweep {
+
+   0%,
+   100% {
+      background-position: 0 0;
+   }
+
+   50% {
+      background-position: 24px 0;
+   }
+}
+
+@keyframes hazard-sweep-reverse {
+
+   0%,
+   100% {
+      background-position: 0 0;
+   }
+
+   50% {
+      background-position: -24px 0;
+   }
+}
+
+@keyframes toxic-flicker {
+   0% {
+      opacity: 0.6;
+      transform: scaleY(0.95);
+      filter: contrast(1.2);
+   }
+
+   100% {
+      opacity: 1;
+      transform: scaleY(1.05);
+      filter: contrast(1);
+   }
+}
+
 
 .stat-card {
    position: relative;
@@ -612,20 +818,37 @@ html {
 /* Mod Meta & Buttons */
 .mod-meta {
    display: flex;
-   justify-content: space-between;
-   align-items: center;
+   justify-content: flex-start;
+   align-items: stretch;
+   gap: 4px;
    margin-top: auto;
    padding-top: 15px;
    border-top: 1px solid rgba(var(--cat-color-rgb, var(--accent-rgb)), 0.1);
 }
 
-.mod-version {
+.mod-badges {
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+}
+
+.mod-version,
+.mod-week {
    font-family: monospace;
    font-size: 0.6rem;
    color: var(--cat-color, var(--accent-color));
-   background: rgba(var(--cat-color-rgb, var(--accent-rgb)), 0.1);
    padding: 2px 8px;
+}
+
+.mod-version {
+   background: rgba(var(--cat-color-rgb, var(--accent-rgb)), 0.1);
    border: 1px solid rgba(var(--cat-color-rgb, var(--accent-rgb)), 0.2);
+}
+
+.mod-week {
+   background: rgba(var(--cat-color-rgb, var(--accent-rgb)), 0.05);
+   border: 1px dashed rgba(var(--cat-color-rgb, var(--accent-rgb)), 0.3);
+   opacity: 0.8;
 }
 
 /* Beveled Engaging Button */
@@ -636,8 +859,11 @@ html {
    text-transform: uppercase;
    text-decoration: none;
    color: var(--cat-color, var(--accent-color));
-   display: inline-block;
-   padding: 8px 20px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 0 20px;
+   flex-grow: 1;
    background: rgba(var(--cat-color-rgb, var(--accent-rgb)), 0.1);
    position: relative;
    border: 1px solid rgba(var(--cat-color-rgb, var(--accent-rgb)), 0.4);
@@ -1009,7 +1235,8 @@ html {
    background: var(--accent-color);
    color: var(--bg-base);
    box-shadow: 0 0 20px var(--accent-color);
-   opacity: 1; /* Ensure visible on hover */
+   opacity: 1;
+   /* Ensure visible on hover */
 }
 
 /* Match Hover Effects for Engagement Dialog Buttons */
@@ -1078,31 +1305,28 @@ html {
       padding: 80px 15px 30px;
    }
 
-   /* Stack Logic Cards Vertically */
+   /* Stack Logic Cards Vertically and Expand to Page Width (90vw) */
    .stats-dashboard {
       flex-direction: column;
       align-items: center;
       gap: 15px;
-      padding: 20px 20px;
-      /* Expand bounding box so brackets clear the cards */
+      padding: 15px;
+      /* Remove side padding to give cards room */
+      width: 95%;
+      /* Match the width of .mod-grid-container */
    }
 
-   /* Scale bracket geometries down to fit mobile layout */
-   .stats-dashboard::before,
-   .stats-dashboard::after {
-      width: 40px;
-      height: 40px;
-   }
 
    .stat-card {
-      width: 160px;
-      /* Slightly scaled horizontally */
-      aspect-ratio: 16 / 9;
-      /* Shorter vertically */
+      width: 100%;
+      max-width: 100%;
+      /* Fill the 90vw container */
+      aspect-ratio: 3.5 / 1;
+      /* Sleeker widescreen profile for mobile */
    }
 
    .stat-value {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
    }
 
    /* 4. Mod Browser & Engagement Grids */
@@ -1167,5 +1391,37 @@ html {
 
    #back-to-top-main.visible {
       transform: translateY(0) scale(0.85);
+   }
+
+   /* 6. Game Sync Bar Mobile Calibration */
+   .sync-status-bar {
+      width: 100%;
+      max-width: 100%;
+      /* Match the expanded stat cards */
+      padding: 10px;
+      margin-top: 0px;
+   }
+
+   .sync-status-inner {
+      flex-direction: column;
+      gap: 4px;
+      text-align: center;
+   }
+
+   .sync-label {
+      font-size: 0.5rem;
+      letter-spacing: 1px;
+   }
+
+   .sync-separator {
+      width: 40px;
+      height: 1px;
+      flex-grow: 0;
+      margin: 2px 0;
+   }
+
+   .sync-value {
+      font-size: 0.6rem;
+      letter-spacing: 0.5px;
    }
 }
