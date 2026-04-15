@@ -1,0 +1,35 @@
+name: Sync Mod Categories
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # Runs every 30 minutes
+  workflow_dispatch:      # Allows manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update-categories:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run Category Sync Script
+        run: |
+          cd docs/assets
+          python update_categories.py
+          python check_game_version.py
+
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-sync mod categories and game version [Skip CI]"
+          file_pattern: "docs/assets/categories.json docs/assets/game_status.json"
+          branch: main
