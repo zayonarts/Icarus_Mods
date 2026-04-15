@@ -3,8 +3,9 @@
    /* We break #b6ff00 into RGB numbers (182, 255, 0) for opacity manipulation */
    --accent-rgb: 182, 255, 0;
    --accent-color: rgba(var(--accent-rgb), 0.8);
-   --bg-base: #0a0e13;
    --color-base: #0a0e13;
+   --bg-base: #010404;
+   --terminal-green: #20ff40;
    --color-text-primary: #f8fafc;
    --color-text-secondary: #cbd5e1;
    --radius-xs: 2px;
@@ -637,11 +638,149 @@ html {
    background: linear-gradient(to left, rgba(var(--accent-rgb), 0.05), transparent);
 }
 
-/* --- 5. DYNAMIC MOD BROWSER --- */
+/* --- 5. DYNAMIC MOD BROWSER & TACTICAL OS --- */
+.mod-search-wrapper {
+   position: relative;
+   margin: 40px auto 25px; /* Scaled down top gap slightly for better mobile flow */
+   width: 480px;
+   max-width: 90vw;
+   display: flex;
+   align-items: center;
+}
+
+.mod-search-wrapper::before,
+.mod-search-wrapper::after {
+   content: "";
+   position: absolute;
+   left: 0;
+   width: 100%;
+   height: 2px;
+   background: repeating-linear-gradient(90deg, var(--accent-color) 0, var(--accent-color) 10px, transparent 10px, transparent 15px);
+   opacity: 0.1;
+}
+
+.mod-search-wrapper::before { top: -10px; }
+.mod-search-wrapper::after { bottom: -10px; }
+
+#mod-search {
+   width: 100%;
+   background: rgba(var(--bg-base), 0.4);
+   border: 1px solid rgba(var(--accent-rgb), 0.2);
+   padding: 15px 15px 15px 50px;
+   color: var(--accent-color);
+   font-family: 'Courier New', monospace;
+   font-size: 0.85rem;
+   letter-spacing: 3px;
+   outline: none;
+   transition: all 0.3s;
+   text-transform: uppercase;
+   box-shadow: inset 0 0 20px rgba(var(--accent-rgb), 0.05);
+}
+
+#mod-search:focus {
+   border-color: var(--accent-color);
+   box-shadow: inset 0 0 20px rgba(var(--accent-rgb), 0.1), 0 0 15px rgba(var(--accent-rgb), 0.1);
+}
+
+/* Category Filters */
+.category-filter-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 10px;
+   margin: 0 auto 0px;
+   max-width: 800px;
+}
+
+.filter-btn {
+   font-family: 'Courier New', monospace;
+   font-size: 0.75rem;
+   font-weight: 400;
+   text-transform: uppercase;
+   letter-spacing: 3px;
+   color: var(--btn-color, var(--accent-color));
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   padding: 10px 18px;
+   background: rgba(var(--btn-color-rgb, 255, 255, 255), 0.03);
+   border: 1px solid rgba(var(--btn-color-rgb, 255, 255, 255), 0.15);
+   box-shadow: inset 0 0 10px rgba(var(--btn-color-rgb, 255, 255, 255), 0.02);
+   border-radius: 2px; /* Very subtle geometric corner */
+   transition: all 0.3s;
+   cursor: pointer;
+   position: relative;
+   outline: none;
+}
+
+.filter-btn .filter-icon {
+   font-size: 0.75rem;
+   opacity: 0.7;
+}
+
+/* Bottom accent line — mirrors search bar underline */
+.filter-btn::after {
+   content: "";
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 0;
+   height: 1px;
+   background: var(--btn-color, var(--accent-color));
+   box-shadow: 0 0 10px var(--btn-color, var(--accent-color));
+   transition: width 0.3s ease;
+}
+
+.filter-btn:hover {
+   border-color: rgba(var(--btn-color-rgb, var(--accent-rgb)), 0.6);
+   box-shadow: inset 0 0 20px rgba(var(--btn-color-rgb, var(--accent-rgb)), 0.1),
+               0 0 15px rgba(var(--btn-color-rgb, var(--accent-rgb)), 0.15);
+}
+
+.filter-btn:hover::after,
+.filter-btn.active::after {
+   width: 100%;
+}
+
+.filter-btn.active {
+   border-color: rgba(var(--btn-color-rgb, var(--accent-rgb)), 0.2);
+   box-shadow: inset 0 0 20px rgba(var(--btn-color-rgb, var(--accent-rgb)), 0.15),
+               0 0 12px rgba(var(--btn-color-rgb, var(--accent-rgb)), 0.15);
+   text-shadow: 0 0 8px var(--btn-color, var(--accent-color));
+}
+
+#mod-search:focus {
+   background: rgba(var(--accent-rgb), 0.1);
+   border-color: var(--accent-color);
+   box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.2);
+}
+
+.search-icon {
+   position: absolute;
+   left: 15px;
+   color: var(--accent-color);
+   opacity: 0.6;
+}
+
+.search-line {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   height: 1px;
+   width: 0;
+   background: var(--accent-color);
+   transition: width 0.3s ease;
+   box-shadow: 0 0 10px var(--accent-color);
+}
+
+#mod-search:focus ~ .search-line {
+   width: 100%;
+}
+
 .mod-grid-container {
    width: 90vw;
    max-width: 1200px;
-   margin-top: 100px;
+   margin-top: 10px;
    margin-bottom: 200px;
    /* Space at bottom for side decor */
    padding: 20px;
@@ -724,6 +863,19 @@ html {
    background-size: 10px 10px;
    /* Corner Brackets using pseudos */
    overflow: visible;
+   
+   /* Staggered Reveal Logic */
+   opacity: 0;
+   transform: translateY(15px);
+}
+
+.mod-module.is-revealed {
+   animation: module-fade-in 0.6s ease-out forwards;
+}
+
+@keyframes module-fade-in {
+   0% { opacity: 0; transform: translateY(15px); }
+   100% { opacity: 1; transform: translateY(0); }
 }
 
 .mod-module::before,
@@ -798,7 +950,11 @@ html {
    font-size: 1.1rem;
    font-weight: 800;
    color: var(--color-text-primary);
-   letter-spacing: 0.5px;
+   text-transform: uppercase;
+   letter-spacing: 2px;
+   overflow-wrap: break-word;
+   word-break: break-word;
+   white-space: normal;
    text-shadow: 0 0 15px rgba(var(--cat-color-rgb, var(--accent-rgb)), 0.3);
 }
 
@@ -1288,6 +1444,21 @@ html {
       display: none !important;
    }
 
+   /* Tactical Search & Filters Responsive Shrink */
+   .mod-search-wrapper { max-width: 95vw; margin-top: 30px; }
+   #mod-search { 
+      padding: 12px 15px 12px 40px; 
+      font-size: 0.75rem; 
+      letter-spacing: 2px;
+   }
+   .search-icon { left: 12px; }
+   .category-filter-container { gap: 8px; }
+   .filter-btn {
+      font-size: 0.65rem;
+      padding: 8px 12px;
+      letter-spacing: 2px;
+   }
+
    /* 2. Top Header adjustments */
    .hud-top-bar {
       padding: 0 15px;
@@ -1305,15 +1476,16 @@ html {
       padding: 80px 15px 30px;
    }
 
-   /* Stack Logic Cards Vertically and Expand to Page Width (90vw) */
+   /* Fix off-center alignment: Align exactly like the search bar above it */
    .stats-dashboard {
+      width: 480px;
+      max-width: 90vw;
+      margin: 10px auto 30px !important;
+      padding: 0; /* Remove padding that was creating an offset */
       flex-direction: column;
       align-items: center;
       gap: 15px;
-      padding: 15px;
-      /* Remove side padding to give cards room */
-      width: 95%;
-      /* Match the width of .mod-grid-container */
+      display: flex; /* Ensure it's active */
    }
 
 
@@ -1425,3 +1597,115 @@ html {
       letter-spacing: 0.5px;
    }
 }
+
+/* --- 7. TERMINAL MODE & SENSOR SWEEP --- */
+#terminal-overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   pointer-events: none;
+   z-index: 10000;
+   opacity: 0;
+   transition: opacity 0.5s ease;
+   background: 
+      linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%),
+      linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.01));
+   background-size: 100% 4px, 3px 100%;
+}
+
+.terminal-active #terminal-overlay {
+   opacity: 1;
+   background-color: rgba(32, 255, 64, 0.03);
+   backdrop-filter: brightness(0.9) contrast(1.1);
+   -webkit-backdrop-filter: brightness(0.9) contrast(1.1);
+}
+
+#terminal-overlay::after {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(0deg, transparent 0%, rgba(var(--accent-rgb), 0.05) 50%, transparent 100%);
+   background-size: 100% 400%;
+   animation: scan-drift 8s linear infinite;
+}
+
+@keyframes scan-drift {
+   0% { background-position: 0 0%; }
+   100% { background-position: 0 100%; }
+}
+
+.hud-header-right {
+   display: flex;
+   align-items: center;
+   gap: 20px;
+}
+
+.terminal-btn {
+   background: transparent;
+   border: 1px solid rgba(var(--accent-rgb), 0.3);
+   color: var(--accent-color);
+   padding: 8px;
+   cursor: pointer;
+   position: relative;
+   overflow: hidden;
+   transition: all 0.3s;
+}
+
+.terminal-btn:hover {
+   background: rgba(var(--accent-rgb), 0.1);
+   border-color: var(--accent-color);
+}
+
+.terminal-btn.active {
+   background: var(--accent-color);
+   color: var(--bg-base);
+   box-shadow: 0 0 15px var(--accent-color);
+}
+
+@media (max-width: 768px) {
+   #terminal-toggle {
+      display: none !important;
+   }
+}
+
+/* Sensor Spectre (Oscilloscope) Container */
+.sensor-spectre {
+   width: 120px;
+   height: 48px;
+   background: rgba(var(--accent-rgb), 0.05);
+   border: 1px solid rgba(var(--accent-rgb), 0.1);
+   margin-bottom: 10px;
+   overflow: hidden;
+   position: relative;
+}
+
+.sensor-path {
+   stroke: var(--accent-color);
+   stroke-width: 1.2;
+   fill: none;
+   filter: drop-shadow(0 0 3px var(--accent-color));
+}
+
+.sensor-text {
+   font-size: 7px;
+   fill: var(--accent-color);
+   font-family: "Courier New", monospace;
+   opacity: 0.7;
+   font-weight: 900;
+}
+
+.sensor-grid {
+   stroke: rgba(var(--accent-rgb), 0.05);
+   stroke-width: 0.5;
+}
+
+.sensor-dot {
+   fill: var(--accent-color);
+   filter: drop-shadow(0 0 5px var(--accent-color));
+}
+

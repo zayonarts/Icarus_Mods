@@ -179,7 +179,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Initialize Game Sync Checker
     initGameSync();
 
-    // 6. Global Navigation & Telemetry: Back to Top + Progress Bar
+    // 6. Tactical OS: Search & Transitions
+    initStaggeredReveal();
+    initSearch();
+    initTerminalMode();
+    initSpectreSensor();
+    initCategoryFilters();
+
+    // 7. Global Navigation & Telemetry: Back to Top + Progress Bar
     const backToTopMain = document.getElementById('back-to-top-main');
     const mainProgressBar = document.getElementById('main-progress-bar');
 
@@ -210,6 +217,248 @@ document.addEventListener('DOMContentLoaded', () => {
     // Refresh stats every minute to stay sync
     setInterval(() => updateStats(false), 60000);
 });
+
+// --- Tactical OS: Logic Subsystems ---
+
+function scrambleText(element, targetText, duration = 1000) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&*';
+    let iteration = 0;
+    const interval = setInterval(() => {
+        element.innerText = targetText
+            .split("")
+            .map((char, index) => {
+                if (char === ' ') return ' ';
+                if (index < iteration) return targetText[index];
+                return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join("");
+
+        if (iteration >= targetText.length) clearInterval(interval);
+        iteration += targetText.length / 10;
+    }, duration / 20);
+}
+
+let activeCategory = 'all';
+let activeSearch = '';
+
+function applyFilters() {
+    const categories = document.querySelectorAll('.mod-category');
+    
+    categories.forEach(cat => {
+        const categoryId = cat.getAttribute('data-category'); // e.g. "Stack_Mods"
+        const mods = cat.querySelectorAll('.mod-module');
+        let hasVisibleMods = false;
+
+        // Check if the entire category should be hidden by the category filter
+        const categoryMatch = (activeCategory === 'all' || activeCategory === categoryId);
+
+        mods.forEach(mod => {
+            const name = mod.querySelector('.mod-name').textContent.toLowerCase();
+            const desc = mod.querySelector('.mod-description').textContent.toLowerCase();
+            const searchMatch = name.includes(activeSearch) || desc.includes(activeSearch);
+
+            if (categoryMatch && searchMatch) {
+                mod.style.display = 'flex';
+                hasVisibleMods = true;
+                
+                // Re-trigger reveal animation logic if it was previously hidden/filtered
+                if (mod.style.display !== 'flex' || !mod.classList.contains('is-revealed')) {
+                    mod.classList.remove('is-revealed');
+                    mod.style.animationDelay = '0s';
+                    staggerObserver.observe(mod);
+                }
+                
+                // Trigger scramble on the name if it's a new match
+                if (activeSearch.length > 2 && !mod.classList.contains('matched')) {
+                    scrambleText(mod.querySelector('.mod-name'), mod.querySelector('.mod-name').textContent, 300);
+                    mod.classList.add('matched');
+                }
+            } else {
+                mod.style.display = 'none';
+                mod.classList.remove('matched');
+                mod.classList.remove('is-revealed');
+                staggerObserver.unobserve(mod);
+            }
+        });
+
+        // Only show the category title if it has visible mods and matches the category filter
+        cat.style.display = (categoryMatch && hasVisibleMods) ? 'flex' : 'none';
+    });
+}
+
+function initSearch() {
+    const searchInput = document.getElementById('mod-search');
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', (e) => {
+        activeSearch = e.target.value.toLowerCase();
+        applyFilters();
+    });
+}
+
+async function initCategoryFilters() {
+    const filterContainer = document.getElementById('category-filters');
+    if (!filterContainer) return;
+
+    try {
+        const response = await fetch('assets/categories.json');
+        const data = await response.json();
+        const cats = data.Categories;
+
+        // Create "ALL" button first
+        const allBtn = document.createElement('button');
+        allBtn.className = 'filter-btn active';
+        allBtn.innerHTML = `<i class="fas fa-th filter-icon"></i>ALL_MODULES`;
+        // Read computed values as literal strings — same format as category buttons
+        const rootStyle = getComputedStyle(document.documentElement);
+        const accentColor = rootStyle.getPropertyValue('--accent-color').trim();
+        const accentRgb = rootStyle.getPropertyValue('--accent-rgb').trim();
+        allBtn.style.setProperty('--btn-color', accentColor);
+        allBtn.style.setProperty('--btn-color-rgb', accentRgb);
+        allBtn.onclick = () => selectCategory('all', allBtn);
+        filterContainer.appendChild(allBtn);
+
+        // Create specific buttons
+        Object.entries(cats).forEach(([id, meta]) => {
+            // Ignore if color is black (000000)
+            if (meta.Color.replace('#', '') === "000000") return;
+
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.innerHTML = `<i class="fas ${meta.Icon} filter-icon"></i>${meta.Name}`;
+
+            // Apply themed colors
+            btn.style.setProperty('--btn-color', meta.Color);
+            const rgbString = hexToRgb(meta.Color);
+            if (rgbString) btn.style.setProperty('--btn-color-rgb', rgbString);
+
+            btn.onclick = () => selectCategory(id, btn);
+            filterContainer.appendChild(btn);
+        });
+
+    } catch (error) {
+        console.error("Critical error loading filters:", error);
+    }
+}
+
+function selectCategory(id, btn) {
+    activeCategory = id;
+    
+    // Update UI
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    applyFilters();
+}
+
+
+
+// Staggered reveal observer
+const staggerObserver = new IntersectionObserver((entries) => {
+    let delayIndex = 0;
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('is-revealed')) {
+            entry.target.style.animationDelay = `${delayIndex * 0.08}s`;
+            entry.target.classList.add('is-revealed');
+            staggerObserver.unobserve(entry.target);
+            delayIndex++;
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+function initStaggeredReveal() {
+    // Initial observation logic in case mods are already in DOM at boot
+    const mods = document.querySelectorAll('.mod-module');
+    mods.forEach(mod => staggerObserver.observe(mod));
+    
+    // Watch for dynamically added mods using MutationObserver inside browser
+    const browser = document.getElementById('mod-browser');
+    if (!browser) return;
+
+    const modObserver = new MutationObserver(() => {
+        const newMods = document.querySelectorAll('.mod-module:not(.is-revealed)');
+        newMods.forEach(mod => staggerObserver.observe(mod));
+    });
+
+    modObserver.observe(browser, { childList: true, subtree: true });
+}
+
+function initTerminalMode() {
+    const toggle = document.getElementById('terminal-toggle');
+    const overlay = document.getElementById('terminal-overlay');
+    if (!toggle) return;
+
+    const isActive = localStorage.getItem('terminal-mode') === 'true';
+    if (isActive) {
+        document.body.classList.add('terminal-active');
+        toggle.classList.add('active');
+    }
+
+    toggle.addEventListener('click', () => {
+        const active = document.body.classList.toggle('terminal-active');
+        toggle.classList.toggle('active');
+        localStorage.setItem('terminal-mode', active);
+    });
+}
+
+function initSpectreSensor() {
+    const container = document.getElementById('sensor-oscilloscope');
+    if (!container) return;
+
+    container.innerHTML = `
+        <svg viewBox="0 0 120 48" preserveAspectRatio="none" style="width: 100%; height: 100%;">
+            <!-- Initial Grid Mesh -->
+            <path class="sensor-grid" d="M 0 12 L 120 12 M 0 24 L 120 24 M 0 36 L 120 36 M 30 0 L 30 48 M 60 0 L 60 48 M 90 0 L 90 48" />
+            <path class="sensor-path" id="spectre-wave" d="M 0 24 Q 30 24 60 24 Q 90 24 120 24" />
+            <circle class="sensor-dot" id="spectre-dot" r="1.5" cx="0" cy="24" />
+            <text x="5" y="10" class="sensor-text" id="sensor-uptime">UPTIME: 99.9%</text>
+            <text x="5" y="44" class="sensor-text" id="sensor-flx">FLX: 104_ACTIVE</text>
+        </svg>
+    `;
+
+    const wave = document.getElementById('spectre-wave');
+    const dot = document.getElementById('spectre-dot');
+    const uptimeText = document.getElementById('sensor-uptime');
+    const flxText = document.getElementById('sensor-flx');
+    let time = 0;
+
+    function animateWave() {
+        time += 0.05;
+        
+        // Generate a complex synthetic wave
+        const points = [];
+        let dotY = 24;
+        const dotX = (Math.sin(time * 0.5) * 60) + 60; // Moving dot X position
+
+        for (let x = 0; x <= 120; x += 5) {
+            const y = 24 + 
+                Math.sin(time + x * 0.1) * 8 + 
+                Math.sin(time * 2 + x * 0.05) * 4 + 
+                (Math.random() - 0.5) * 2; 
+            points.push(`${x} ${y}`);
+
+            // Update dot tracking
+            if (Math.abs(x - dotX) < 5) dotY = y;
+        }
+        
+        wave.setAttribute('d', `M ${points.join(' L ')}`);
+        dot.setAttribute('cx', dotX);
+        dot.setAttribute('cy', dotY);
+
+        // Periodically "Glitch" the metadata
+        if (Math.random() > 0.98) {
+            uptimeText.style.opacity = (Math.random() * 0.5).toString();
+            flxText.textContent = `FLX: ${Math.floor(Math.random() * 200 + 100)}_JITTER`;
+        } else {
+            uptimeText.style.opacity = "0.7";
+            flxText.textContent = `FLX: ${Math.floor(104 + Math.sin(time) * 5)}_ACTIVE`;
+        }
+
+        requestAnimationFrame(animateWave);
+    }
+
+    animateWave();
+}
 
 // --- Dynamic Mod Browser System ---
 

@@ -22,7 +22,13 @@
             <span class="status-text">SYSTEM: ONLINE <span class="hud-spinner"></span></span>
         </div>
         <h1 class="is-glossy-text" id="main-title">Zayon's Icarus Mods</h1>
-        <div class="hud-version" id="init-version">VER: 1.0.42_STABLE</div>
+        <div class="hud-header-right">
+            <button id="terminal-toggle" class="terminal-btn" title="Toggle Classic Terminal Mode">
+                <i class="fa-solid fa-microchip"></i>
+                <span class="btn-glow"></span>
+            </button>
+            <div class="hud-version" id="init-version">VER: 1.0.42_STABLE</div>
+        </div>
     </header>
 
     <!-- Global Scroll Progression Bar -->
@@ -66,6 +72,18 @@
             </div>
         </section>
 
+        <!-- Tactical Search Array -->
+        <div class="mod-search-wrapper">
+            <div class="search-icon"><i class="fas fa-search"></i></div>
+            <input type="text" id="mod-search" placeholder="SEARCHING_FOR_DATA_MODULES..." autocomplete="off">
+            <div class="search-line"></div>
+        </div>
+
+        <!-- Category Filters -->
+        <div id="category-filters" class="category-filter-container">
+            <!-- Dynamically populated from categories.json -->
+        </div>
+
         <!-- Dynamic Mod Browser -->
         <section id="mod-browser" class="mod-grid-container">
             <!-- Dynamically populated categories and mods -->
@@ -80,8 +98,7 @@
     </aside>
 
     <aside class="hud-decor-side right">
-        <div class="decor-block">UPTIME: 99.9%</div>
-        <div class="decor-block">FLX: ACTIVE</div>
+        <div class="sensor-spectre" id="sensor-oscilloscope"></div>
     </aside>
     <!-- Global Mod Engagement Modal -->
     <dialog id="mod-details-dialog">
@@ -116,6 +133,8 @@
 
     <!-- Global Absolute Navigation -->
     <button id="back-to-top-main" class="hud-top-btn" title="Back to Top"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <div id="terminal-overlay"></div>
 
     <script src="script.js"></script>
 
