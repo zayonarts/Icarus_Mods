@@ -573,7 +573,7 @@ async function updateGameSync(modCompatibility) {
         }
 
         if (modWeek >= latestWeek) {
-            setStatus(`SYNCED [W${latestWeek}]`, "var(--success-color, #10b981)", false, false);
+            setStatus(`SYNCED [W${latestWeek}]`, "var(--accent-color)", false, false);
         } else {
             // Advisory mode: Game is ahead of mods
             setStatus(`ADVISORY [W${latestWeek}]`, "#f59e0b", true, false);
