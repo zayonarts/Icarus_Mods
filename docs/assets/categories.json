@@ -15,10 +15,10 @@
             "Folder": "Simple_Mods"
         },
         "Weight_Mods": {
-            "Name": "Weight  Mods",
-            "Description": "System Alert: Initializing category metadata. Configuration required.",
-            "Color": "#000000",
-            "Icon": "fa-shield-halved",
+            "Name": "Weight Mods",
+            "Description": "Mods that decrease weight of all items by percentage.",
+            "Color": "#ff5e00",
+            "Icon": "fa-weight-hanging",
             "Folder": "Weight_Mods"
         }
     }
