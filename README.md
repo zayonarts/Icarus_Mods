@@ -56,6 +56,45 @@ Each item keeps its original stack limit, but scaled up by the chosen multiplier
 
 ---
 
+# ICARUS All Weights Mod
+
+Tired of being over-encumbered? This mod **reduces the weight of every item in ICARUS** by a chosen percentage.
+
+Pick a reduction level that suits your playstyle — from a mild trim to completely weightless.
+
+## ⚖️ What It Does
+- Reduces the weight of **all items** in the game
+- Each item's original weight is reduced by the chosen percentage, rounded down to one decimal place
+
+---
+
+### 🪶 Weight Reduction Versions
+
+- **-25%** — reduces every item's weight by 25%
+- **-50%** — reduces every item's weight by 50%
+- **-75%** — reduces every item's weight by 75%
+- **-100%** — removes all item weight entirely (everything weighs 0)
+
+> For example, an item weighing 10 at -25% becomes 7.5, at -50% becomes 5, and at -100% becomes 0.
+
+---
+
+## ⚙️ Installation
+1. Use the Icarus Mod Manager (IMM) from Jimk72.
+2. Search & download the version you want from the mod browser inside the manager.
+3. Launch the game and enjoy lighter inventory.
+
+## 🧩 Compatibility
+- Works with all items that have a weight value.
+- Shouldn't conflict with most other mods unless they also change item weights.
+- Install only **one version** at a time.
+
+## ❓ Troubleshooting
+- If weights don't change, make sure only **one version** of the mod is installed.
+- Restart the game after adding/removing the mod.
+
+---
+
 # ICARUS Extended Frozen Ore
 
 Frozen Ore is a mysterious ore that can be smelted at any furnace to randomly yield one type of ore. Vanilla ICARUS includes 10 possible outputs — this mod adds **Platinum Ore** and **Titanium Ore** to that pool.

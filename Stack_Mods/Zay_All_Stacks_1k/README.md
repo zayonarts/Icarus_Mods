@@ -26,8 +26,7 @@
 ## 📥 Installation
 
 1. Download `Zay_All_Stacks_1k.EXMODZ`
-2. Place the file into your **Icarus Mod Manager's** `Extracted_Mods` folder
-3. Or import it directly through the mod manager
+2. Import (Zay_All_Stacks_1k.EXMODZ) into your Icarus Mod Manager.
 
 > **Note:** This mod uses the `.EXMODZ` format and requires Icarus Mod Manager to install.
 
