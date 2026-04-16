@@ -126,10 +126,58 @@
       "version": "1.0",
       "compatibility": "227",
       "description": "Extends the Frozen Ore smelting recipe to also yield Platinum Ore and Titanium Ore as possible random outputs, alongside the vanilla ore pool.",
-      "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/SimpleMods/Zay_Extended_Frozen_Ore/Zay_Extended_Frozen_Ore-Icon.png",
-      "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/SimpleMods/Zay_Extended_Frozen_Ore/README.md",
+      "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Simple_Mods/Zay_Extended_Frozen_Ore/Zay_Extended_Frozen_Ore-Icon.png",
+      "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Simple_Mods/Zay_Extended_Frozen_Ore/README.md",
       "files": {
-        "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/SimpleMods/Zay_Extended_Frozen_Ore/Zay_Extended_Frozen_Ore.EXMODZ"
+        "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Simple_Mods/Zay_Extended_Frozen_Ore/Zay_Extended_Frozen_Ore.EXMODZ"
+      }
+    },
+    {
+      "name": "Zay - All Weights [-25%]",
+      "author": "Zayon",
+      "version": "1.0",
+      "compatibility": "227",
+      "description": "This mod modifies all items with weight in ICARUS to reduce them by 25%.",
+      "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Weight_Mods/Zay_All_Weights_25/Zay_All_Weights_25-Icon.png",
+      "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Weight_Mods/Zay_All_Weights_25/README.md",
+      "files": {
+        "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Weight_Mods/Zay_All_Weights_25/Zay_All_Weights_25.EXMODZ"
+      }
+    },
+    {
+      "name": "Zay - All Weights [-50%]",
+      "author": "Zayon",
+      "version": "1.0",
+      "compatibility": "227",
+      "description": "This mod modifies all items with weight in ICARUS to reduce them by 50%.",
+      "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Weight_Mods/Zay_All_Weights_50/Zay_All_Weights_50-Icon.png",
+      "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Weight_Mods/Zay_All_Weights_50/README.md",
+      "files": {
+        "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Weight_Mods/Zay_All_Weights_50/Zay_All_Weights_50.EXMODZ"
+      }
+    },
+    {
+      "name": "Zay - All Weights [-75%]",
+      "author": "Zayon",
+      "version": "1.0",
+      "compatibility": "227",
+      "description": "This mod modifies all items with weight in ICARUS to reduce them by 75%.",
+      "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Weight_Mods/Zay_All_Weights_75/Zay_All_Weights_75-Icon.png",
+      "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Weight_Mods/Zay_All_Weights_75/README.md",
+      "files": {
+        "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Weight_Mods/Zay_All_Weights_75/Zay_All_Weights_75.EXMODZ"
+      }
+    },
+    {
+      "name": "Zay - All Weights [-100%]",
+      "author": "Zayon",
+      "version": "1.0",
+      "compatibility": "227",
+      "description": "This mod modifies all items with weight in ICARUS to reduce them by 100%.",
+      "imageURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Weight_Mods/Zay_All_Weights_100/Zay_All_Weights_100-Icon.png",
+      "readmeURL": "https://github.com/zayonarts/Icarus_Mods/raw/main/Weight_Mods/Zay_All_Weights_100/README.md",
+      "files": {
+        "exmodz": "https://github.com/zayonarts/Icarus_Mods/raw/refs/heads/main/Weight_Mods/Zay_All_Weights_100/Zay_All_Weights_100.EXMODZ"
       }
     }
   ]
