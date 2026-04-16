@@ -38,8 +38,7 @@ All vanilla ore outputs remain intact — this mod only adds new possibilities.
 ## 📥 Installation
 
 1. Download `Zay_Extended_Frozen_Ore.EXMODZ`
-2. Place the file into your **Icarus Mod Manager's** `Extracted_Mods` folder
-3. Or import it directly through the mod manager
+2. Import (Zay_Extended_Frozen_Ore.EXMODZ) into your Icarus Mod Manager.
 
 > **Note:** This mod uses the `.EXMODZ` format and requires Icarus Mod Manager to install.
 
