@@ -243,7 +243,7 @@ let activeSearch = '';
 
 function applyFilters() {
     const categories = document.querySelectorAll('.mod-category');
-    
+
     categories.forEach(cat => {
         const categoryId = cat.getAttribute('data-category'); // e.g. "Stack_Mods"
         const mods = cat.querySelectorAll('.mod-module');
@@ -260,14 +260,14 @@ function applyFilters() {
             if (categoryMatch && searchMatch) {
                 mod.style.display = 'flex';
                 hasVisibleMods = true;
-                
+
                 // Re-trigger reveal animation logic if it was previously hidden/filtered
                 if (mod.style.display !== 'flex' || !mod.classList.contains('is-revealed')) {
                     mod.classList.remove('is-revealed');
                     mod.style.animationDelay = '0s';
                     staggerObserver.observe(mod);
                 }
-                
+
                 // Trigger scramble on the name if it's a new match
                 if (activeSearch.length > 2 && !mod.classList.contains('matched')) {
                     scrambleText(mod.querySelector('.mod-name'), mod.querySelector('.mod-name').textContent, 300);
@@ -343,11 +343,11 @@ async function initCategoryFilters() {
 
 function selectCategory(id, btn) {
     activeCategory = id;
-    
+
     // Update UI
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    
+
     applyFilters();
 }
 
@@ -370,7 +370,7 @@ function initStaggeredReveal() {
     // Initial observation logic in case mods are already in DOM at boot
     const mods = document.querySelectorAll('.mod-module');
     mods.forEach(mod => staggerObserver.observe(mod));
-    
+
     // Watch for dynamically added mods using MutationObserver inside browser
     const browser = document.getElementById('mod-browser');
     if (!browser) return;
@@ -424,23 +424,23 @@ function initSpectreSensor() {
 
     function animateWave() {
         time += 0.05;
-        
+
         // Generate a complex synthetic wave
         const points = [];
         let dotY = 24;
         const dotX = (Math.sin(time * 0.5) * 60) + 60; // Moving dot X position
 
         for (let x = 0; x <= 120; x += 5) {
-            const y = 24 + 
-                Math.sin(time + x * 0.1) * 8 + 
-                Math.sin(time * 2 + x * 0.05) * 4 + 
-                (Math.random() - 0.5) * 2; 
+            const y = 24 +
+                Math.sin(time + x * 0.1) * 8 +
+                Math.sin(time * 2 + x * 0.05) * 4 +
+                (Math.random() - 0.5) * 2;
             points.push(`${x} ${y}`);
 
             // Update dot tracking
             if (Math.abs(x - dotX) < 5) dotY = y;
         }
-        
+
         wave.setAttribute('d', `M ${points.join(' L ')}`);
         dot.setAttribute('cx', dotX);
         dot.setAttribute('cy', dotY);
@@ -571,18 +571,31 @@ function createModCard(mod, categoryKey) {
     // Restore the high-fidelity immersive HUD ID logic
     const id = (Math.random() * 10000).toFixed(0).padStart(4, '0');
 
+    // Icon logic: Use imageURL if provided, else fallback to category icon
+    const category = categoriesData[categoryKey] || {};
+    const hasImage = mod.imageURL && mod.imageURL.trim() !== "";
+    const iconHtml = hasImage
+        ? `<img src="${mod.imageURL}" class="mod-icon-img" alt="${mod.name}">`
+        : `<i class="fas ${category.Icon || 'fa-cube'} mod-icon-fallback"></i>`;
+
     return `
         <div class="mod-module">
             <div class="mod-card-header">
                 <span class="mod-id">ID: ${id}</span>
                 <div class="mod-status-pulse"></div>
             </div>
-            <h3 class="mod-name">${mod.name}</h3>
+            <div class="mod-title-group">
+                <div class="mod-icon-frame">
+                    ${iconHtml}
+                    <div class="mod-icon-scan"></div>
+                </div>
+                <h3 class="mod-name">${mod.name}</h3>
+            </div>
             <p class="mod-description">${mod.description.substring(0, 100)}${mod.description.length > 100 ? '...' : ''}</p>
             <div class="mod-meta">
                 <div class="mod-badges">
-                    <span class="mod-version">V ${mod.version || '1.0.0'}</span>
-                    <span class="mod-week">W ${mod.compatibility || '---'}</span>
+                    <span class="mod-version">V ${mod.version || '1.4'}</span>
+                    <span class="mod-week">W ${mod.compatibility || '227'}</span>
                 </div>
                 <button class="mod-link" onclick="openModDetails('${mod.readmeURL}', '${mod.name.replace(/'/g, "\\'")}', '${categoryKey}')">
                     ENGAGE MODULE

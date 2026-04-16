@@ -641,7 +641,8 @@ html {
 /* --- 5. DYNAMIC MOD BROWSER & TACTICAL OS --- */
 .mod-search-wrapper {
    position: relative;
-   margin: 40px auto 25px; /* Scaled down top gap slightly for better mobile flow */
+   margin: 40px auto 25px;
+   /* Scaled down top gap slightly for better mobile flow */
    width: 480px;
    max-width: 90vw;
    display: flex;
@@ -659,8 +660,13 @@ html {
    opacity: 0.1;
 }
 
-.mod-search-wrapper::before { top: -10px; }
-.mod-search-wrapper::after { bottom: -10px; }
+.mod-search-wrapper::before {
+   top: -10px;
+}
+
+.mod-search-wrapper::after {
+   bottom: -10px;
+}
 
 #mod-search {
    width: 100%;
@@ -706,7 +712,8 @@ html {
    background: rgba(var(--btn-color-rgb, 255, 255, 255), 0.03);
    border: 1px solid rgba(var(--btn-color-rgb, 255, 255, 255), 0.15);
    box-shadow: inset 0 0 10px rgba(var(--btn-color-rgb, 255, 255, 255), 0.02);
-   border-radius: 2px; /* Very subtle geometric corner */
+   border-radius: 2px;
+   /* Very subtle geometric corner */
    transition: all 0.3s;
    cursor: pointer;
    position: relative;
@@ -734,7 +741,7 @@ html {
 .filter-btn:hover {
    border-color: rgba(var(--btn-color-rgb, var(--accent-rgb)), 0.6);
    box-shadow: inset 0 0 20px rgba(var(--btn-color-rgb, var(--accent-rgb)), 0.1),
-               0 0 15px rgba(var(--btn-color-rgb, var(--accent-rgb)), 0.15);
+      0 0 15px rgba(var(--btn-color-rgb, var(--accent-rgb)), 0.15);
 }
 
 .filter-btn:hover::after,
@@ -745,7 +752,7 @@ html {
 .filter-btn.active {
    border-color: rgba(var(--btn-color-rgb, var(--accent-rgb)), 0.2);
    box-shadow: inset 0 0 20px rgba(var(--btn-color-rgb, var(--accent-rgb)), 0.15),
-               0 0 12px rgba(var(--btn-color-rgb, var(--accent-rgb)), 0.15);
+      0 0 12px rgba(var(--btn-color-rgb, var(--accent-rgb)), 0.15);
    text-shadow: 0 0 8px var(--btn-color, var(--accent-color));
 }
 
@@ -773,7 +780,7 @@ html {
    box-shadow: 0 0 10px var(--accent-color);
 }
 
-#mod-search:focus ~ .search-line {
+#mod-search:focus~.search-line {
    width: 100%;
 }
 
@@ -851,7 +858,8 @@ html {
    padding: 25px 20px 20px;
    display: flex;
    flex-direction: column;
-   gap: 15px;
+   gap: 8px;
+   /* Reduced gap for tighter layout */
    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
    /* Native glassmorphism logic */
    backdrop-filter: blur(2px);
@@ -863,7 +871,7 @@ html {
    background-size: 10px 10px;
    /* Corner Brackets using pseudos */
    overflow: visible;
-   
+
    /* Staggered Reveal Logic */
    opacity: 0;
    transform: translateY(15px);
@@ -874,8 +882,15 @@ html {
 }
 
 @keyframes module-fade-in {
-   0% { opacity: 0; transform: translateY(15px); }
-   100% { opacity: 1; transform: translateY(0); }
+   0% {
+      opacity: 0;
+      transform: translateY(15px);
+   }
+
+   100% {
+      opacity: 1;
+      transform: translateY(0);
+   }
 }
 
 .mod-module::before,
@@ -931,6 +946,77 @@ html {
    letter-spacing: 1px;
 }
 
+/* Mod Icon Frame */
+/* Mod Title Group: Layout for Side-by-Side Icon & Name */
+.mod-title-group {
+   display: flex;
+   align-items: center;
+   /* Center icon vertically with the first line of text */
+   gap: 12px;
+   margin-bottom: 0px;
+   /* High-density data read-out: pull description up closer to title */
+}
+
+/* Mod Icon Frame */
+.mod-icon-frame {
+   position: relative;
+   flex: 0 0 42px;
+   /* Slightly smaller for better integration */
+   width: 42px;
+   height: 42px;
+   background: rgba(var(--cat-color-rgb, var(--accent-rgb)), 0.05);
+   border: 1px solid rgba(var(--cat-color-rgb, var(--accent-rgb)), 0.2);
+   border-radius: 4px;
+   overflow: hidden;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+   z-index: 2;
+}
+
+.mod-icon-img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   opacity: 0.8;
+   filter: grayscale(0.2) contrast(1.1);
+   transition: all 0.4s;
+}
+
+.mod-icon-fallback {
+   font-size: 1.2rem;
+   color: var(--cat-color, var(--accent-color));
+   opacity: 0.6;
+}
+
+/* HUD Scanline Overlay */
+.mod-icon-scan {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(to bottom,
+         transparent 0%,
+         rgba(var(--cat-color-rgb, var(--accent-rgb)), 0.1) 50%,
+         transparent 100%);
+   background-size: 100% 200%;
+   animation: icon-scan 4s linear infinite;
+   pointer-events: none;
+   z-index: 3;
+}
+
+@keyframes icon-scan {
+   0% {
+      background-position: 0 -200%;
+   }
+
+   100% {
+      background-position: 0 200%;
+   }
+}
+
 .mod-status-pulse {
    width: 4px;
    height: 4px;
@@ -938,6 +1024,18 @@ html {
    border-radius: 50%;
    box-shadow: 0 0 5px var(--cat-color, var(--accent-color));
    animation: pulse 1.5s infinite;
+   z-index: 4;
+}
+
+.mod-module:hover .mod-icon-frame {
+   border-color: var(--cat-color, var(--accent-color));
+   box-shadow: 0 0 15px rgba(var(--cat-color-rgb, var(--accent-rgb)), 0.2);
+   transform: scale(1.05);
+}
+
+.mod-module:hover .mod-icon-img {
+   opacity: 1;
+   filter: grayscale(0) contrast(1.2);
 }
 
 .mod-module:hover {
@@ -948,14 +1046,17 @@ html {
 
 .mod-name {
    font-size: 1.1rem;
-   font-weight: 800;
-   color: var(--color-text-primary);
+   font-weight: 500;
+   color: rgba(var(--cat-color-rgb), 0.8);
    text-transform: uppercase;
    letter-spacing: 2px;
    overflow-wrap: break-word;
    word-break: break-word;
    white-space: normal;
    text-shadow: 0 0 15px rgba(var(--cat-color-rgb, var(--accent-rgb)), 0.3);
+   margin: 0;
+   flex: 1;
+   line-height: 1.1;
 }
 
 .mod-description {
@@ -1445,14 +1546,25 @@ html {
    }
 
    /* Tactical Search & Filters Responsive Shrink */
-   .mod-search-wrapper { max-width: 95vw; margin-top: 30px; }
-   #mod-search { 
-      padding: 12px 15px 12px 40px; 
-      font-size: 0.75rem; 
+   .mod-search-wrapper {
+      max-width: 95vw;
+      margin-top: 30px;
+   }
+
+   #mod-search {
+      padding: 12px 15px 12px 40px;
+      font-size: 0.75rem;
       letter-spacing: 2px;
    }
-   .search-icon { left: 12px; }
-   .category-filter-container { gap: 8px; }
+
+   .search-icon {
+      left: 12px;
+   }
+
+   .category-filter-container {
+      gap: 8px;
+   }
+
    .filter-btn {
       font-size: 0.65rem;
       padding: 8px 12px;
@@ -1481,11 +1593,13 @@ html {
       width: 480px;
       max-width: 90vw;
       margin: 10px auto 30px !important;
-      padding: 0; /* Remove padding that was creating an offset */
+      padding: 0;
+      /* Remove padding that was creating an offset */
       flex-direction: column;
       align-items: center;
       gap: 15px;
-      display: flex; /* Ensure it's active */
+      display: flex;
+      /* Ensure it's active */
    }
 
 
@@ -1609,7 +1723,7 @@ html {
    z-index: 10000;
    opacity: 0;
    transition: opacity 0.5s ease;
-   background: 
+   background:
       linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%),
       linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.01));
    background-size: 100% 4px, 3px 100%;
@@ -1635,8 +1749,13 @@ html {
 }
 
 @keyframes scan-drift {
-   0% { background-position: 0 0%; }
-   100% { background-position: 0 100%; }
+   0% {
+      background-position: 0 0%;
+   }
+
+   100% {
+      background-position: 0 100%;
+   }
 }
 
 .hud-header-right {
@@ -1708,4 +1827,3 @@ html {
    fill: var(--accent-color);
    filter: drop-shadow(0 0 5px var(--accent-color));
 }
-

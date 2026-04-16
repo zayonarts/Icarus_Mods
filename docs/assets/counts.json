@@ -8,5 +8,10 @@
         "ModCount": 1,
         "RecipesModified": 1,
         "EntriesModified": 1
+    },
+    "All_Weights": {
+        "ModCount": 4,
+        "EntriesModifiedPerMod": 3217,
+        "EntriesModified": 12868
     }
 }

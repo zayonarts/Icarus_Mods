@@ -7,12 +7,12 @@
             "Icon": "fa-layer-group",
             "Folder": "Stack_Mods"
         },
-        "SimpleMods": {
+        "Simple_Mods": {
             "Name": "Simple Mods",
             "Description": "Lightweight additions and quality of life tweaks.",
             "Color": "#ffcc00",
             "Icon": "fa-microchip",
-            "Folder": "SimpleMods"
+            "Folder": "Simple_Mods"
         }
     }
 }
