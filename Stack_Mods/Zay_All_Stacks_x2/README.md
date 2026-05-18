@@ -2,8 +2,8 @@
 
 # Zay - All Stacks [x2]
 
-![Mod Version](https://img.shields.io/badge/Mod_Version-1.4-0078D4?style=for-the-badge)
-![Icarus Week](https://img.shields.io/badge/Icarus_Week-227-2EA043?style=for-the-badge)
+![Mod Version](https://img.shields.io/badge/Mod_Version-1.5-0078D4?style=for-the-badge)
+![Icarus Week](https://img.shields.io/badge/Icarus_Week-232-2EA043?style=for-the-badge)
 ![Author](https://img.shields.io/badge/Author-Zayon-E36209?style=for-the-badge)
 ![Format](https://img.shields.io/badge/Format-.EXMODZ-8B5CF6?style=for-the-badge)
 
@@ -17,7 +17,7 @@
 
 | Feature | Detail |
 |---------|--------|
-| **Items Modified** | 1262 stackable items |
+| **Items Modified** | 1269 stackable items |
 | **Stack Multiplier** | x2 from original values |
 | **Scaling** | Per-item — each item keeps its unique ratio |
 | **Data Table** | `D_Itemable` |

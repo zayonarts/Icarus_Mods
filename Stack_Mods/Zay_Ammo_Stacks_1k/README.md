@@ -1,13 +1,13 @@
 <div align="center">
 
-# Zay - All Stacks [10k]
+# Zay - Ammo Stacks [1k]
 
 ![Mod Version](https://img.shields.io/badge/Mod_Version-1.5-0078D4?style=for-the-badge)
 ![Icarus Week](https://img.shields.io/badge/Icarus_Week-232-2EA043?style=for-the-badge)
 ![Author](https://img.shields.io/badge/Author-Zayon-E36209?style=for-the-badge)
 ![Format](https://img.shields.io/badge/Format-.EXMODZ-8B5CF6?style=for-the-badge)
 
-**A Simple Mod that changes the stack size of all itemables to 10.000 units per slot.**
+**A Simple Mod that changes the stack size of all ammo items to 1.000 units per slot.**
 
 </div>
 
@@ -17,16 +17,17 @@
 
 | Feature | Detail |
 |---------|--------|
-| **Items Modified** | 1269 stackable items |
-| **Stack Size** | 10.000 per slot |
+| **Items Modified** | 98 ammo items |
+| **Stack Size** | 1.000 per slot |
+| **Ammo Types** | Arrows, bolts, rifle rounds, shells, pistol rounds |
 | **Data Table** | `D_Itemable` |
 | **Mod Format** | `.EXMODZ` |
 | **Multiplayer** | ✅ Single player, hosted MP & dedicated server |
 
 ## 📥 Installation
 
-1. Download `Zay_All_Stacks_10k.EXMODZ`
-2. Import (Zay_All_Stacks_10k.EXMODZ) into your Icarus Mod Manager.
+1. Download `Zay_Ammo_Stacks_1k.EXMODZ`
+2. Import (Zay_Ammo_Stacks_1k.EXMODZ) into your Icarus Mod Manager.
 
 > **Note:** This mod uses the `.EXMODZ` format and requires Icarus Mod Manager to install.
 
