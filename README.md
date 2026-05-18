@@ -95,6 +95,42 @@ Pick a reduction level that suits your playstyle — from a mild trim to complet
 
 ---
 
+# ICARUS Ammo Stacks Mod
+
+Running low on ammo mid-fight? This mod **increases the stack size of all ammo items in ICARUS** — without touching anything else in the game.
+
+## 🔫 What It Does
+- Increases stack sizes for **ammo items only**
+- Three flat-value versions to match your preferred playstyle
+
+---
+
+### 📦 Ammo Stack Versions
+
+- **1k** — 1,000 rounds per stack
+- **2.5k** — 2,500 rounds per stack
+- **5k** — 5,000 rounds per stack
+
+> Perfect if you want bigger ammo reserves without affecting the balance of other items.
+
+---
+
+## ⚙️ Installation
+1. Use the Icarus Mod Manager (IMM) from Jimk72.
+2. Search & download the version you want from the mod browser inside the manager.
+3. Launch the game and enjoy larger ammo stacks.
+
+## 🧩 Compatibility
+- Only modifies ammo item stack sizes.
+- Fully compatible with All Stacks, All Weights, and most other mods.
+- Install only **one version** at a time.
+
+## ❓ Troubleshooting
+- If stacks don't change, make sure only **one version** of the mod is installed.
+- Restart the game after adding/removing the mod.
+
+---
+
 # ICARUS Extended Frozen Ore
 
 Frozen Ore is a mysterious ore that can be smelted at any furnace to randomly yield one type of ore. Vanilla ICARUS includes 10 possible outputs — this mod adds **Platinum Ore** and **Titanium Ore** to that pool.
