@@ -1,8 +1,8 @@
 {
     "All_Stacks": {
         "ModCount": 10,
-        "EntriesModifiedPerMod": 1269,
-        "EntriesModified": 12690
+        "EntriesModifiedPerMod": 1326,
+        "EntriesModified": 13260
     },
     "Zay_Extended_Frozen_Ore": {
         "ModCount": 1,
@@ -11,12 +11,12 @@
     },
     "All_Weights": {
         "ModCount": 4,
-        "EntriesModifiedPerMod": 3217,
-        "EntriesModified": 12868
+        "EntriesModifiedPerMod": 3384,
+        "EntriesModified": 13536
     },
     "Ammo_Stacks": {
         "ModCount": 3,
-        "EntriesModifiedPerMod": 98,
-        "EntriesModified": 294
+        "EntriesModifiedPerMod": 100,
+        "EntriesModified": 300
     }
 }
