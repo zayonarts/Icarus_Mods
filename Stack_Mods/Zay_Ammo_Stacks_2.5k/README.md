@@ -3,7 +3,7 @@
 # Zay - Ammo Stacks [2.5k]
 
 ![Mod Version](https://img.shields.io/badge/Mod_Version-1.5-0078D4?style=for-the-badge)
-![Icarus Week](https://img.shields.io/badge/Icarus_Week-250-2EA043?style=for-the-badge)
+![Icarus Week](https://img.shields.io/badge/Icarus_Week-251-2EA043?style=for-the-badge)
 ![Author](https://img.shields.io/badge/Author-Zayon-E36209?style=for-the-badge)
 ![Format](https://img.shields.io/badge/Format-.EXMODZ-8B5CF6?style=for-the-badge)
 
